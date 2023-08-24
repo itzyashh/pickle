@@ -3,4 +3,8 @@ export const routes = {
     login: 'Login',
     signUp: 'SignUp',
     initial: 'InitialScreen',
+    createPost: 'CreatePost',
+    search: 'Search',
+    notifications: 'Notifications',
+    profile: 'Profile',
 }
