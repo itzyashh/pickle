@@ -1,5 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { SafeAreaView, StyleSheet,  View } from 'react-native'
 import colors from '../constants/colors'
 
 const WrapperComponent = ({style={},children}) => {

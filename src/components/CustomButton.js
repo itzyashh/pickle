@@ -15,15 +15,18 @@ const CustomButton = ({title='Button',onPress=()=>{},primary}) => {
 }
 const styles = StyleSheet.create({
     container: {
+        
         backgroundColor: colors.button,
         height: 50,
+        width: width - 40,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-    }
-    ,text: {
+    },
+    text: {
         color: colors.white,
         fontFamily: fontFamily.semiBold,
+        
     }
 })
 export default CustomButton

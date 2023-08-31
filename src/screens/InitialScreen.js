@@ -1,10 +1,9 @@
-import {View, Text, StyleSheet, Button} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {routes} from '../navigation/routes';
 import {useDispatch} from 'react-redux';
 import {setUserData} from '../redux/reducers/auth';
 import WrapperComponent from '../components/WrapperComponent';
-import Svg, {Image as SvgImage, WithLocalSvg} from 'react-native-svg';
+import { WithLocalSvg} from 'react-native-svg';
 import imagePath from '../constants/imagePath';
 import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
 import colors from '../constants/colors';
@@ -24,14 +23,18 @@ const InitialScreen = ({navigation}) => {
   const goToPrivacyPolicy = () => {
     console.log('goToPrivacyPolicy');
   };
-
+  const goToSignUp = () => {
+    console.log('goToSignUp');
+  };
   return (
     <WrapperComponent>
       <View style={styles.container}>
+      <View>
         <WithLocalSvg
           width={54}
           height={62}
-          asset={imagePath.logo}></WithLocalSvg>
+          asset={imagePath.logo}/>
+      </View>
         <View>
           <Text style={styles.text}>
             {strings.BY_CLICKING_LOGIN_YOU_AGREE_TO_OUR}
@@ -59,6 +62,7 @@ const InitialScreen = ({navigation}) => {
           <View
             style={{
               gap: 15,
+              
             }}
           >
 
@@ -68,8 +72,13 @@ const InitialScreen = ({navigation}) => {
           </View>
           
         </View>
+        <View
+          style={{flexDirection: 'row', gap: 5}}
+        >
+          <Text style={styles.text}>{strings.NEW_HERE}</Text>
+          <Text onPress={goToSignUp} style={[styles.linkText,{color:'blue'}]} >{strings.SIGN_UP}</Text>
+        </View>
       </View>
-      
     </WrapperComponent>
   );
 };
@@ -81,6 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
+    
   },
   text: {
     fontFamily: fontFamily.regular,
