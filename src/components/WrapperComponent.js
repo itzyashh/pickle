@@ -4,7 +4,7 @@ import colors from '../constants/colors'
 const WrapperComponent = ({style={},children}) => {
   return (
     <View style={styles.container}>
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}} >
         {children}
     </SafeAreaView>
     </View>

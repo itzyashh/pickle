@@ -9,6 +9,7 @@ import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
 import colors from '../constants/colors';
 import strings from '../constants/lang';
 import CustomButton from '../components/CustomButton';
+import { moderateScale } from '../assets/scaling';
 
 const InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -31,8 +32,8 @@ const InitialScreen = ({navigation}) => {
       <View style={styles.container}>
       <View>
         <WithLocalSvg
-          width={54}
-          height={62}
+          width={moderateScale(54)}
+          height={moderateScale(62)}
           asset={imagePath.logo}/>
       </View>
         <View>
@@ -57,7 +58,7 @@ const InitialScreen = ({navigation}) => {
         </View>
         <View>
           
-          <CustomButton primary title={strings.LOG_IN_WITH_PHONE_NUMBER}  />
+          <CustomButton icon='Phone' primary title={strings.LOG_IN_WITH_PHONE_NUMBER}  />
           <Text style={[styles.text,{textAlign:'center',marginVertical:20}]} >{strings.OR}</Text>
           <View
             style={{
@@ -66,9 +67,9 @@ const InitialScreen = ({navigation}) => {
             }}
           >
 
-          <CustomButton title={strings.LOG_IN_WITH_GOOGLE}  />
-          <CustomButton title={strings.LOG_IN_WITH_FACEBOOK}  />
-          <CustomButton title={strings.LOG_IN_WITH_APPLE}  />
+          <CustomButton title={strings.LOG_IN_WITH_GOOGLE} icon='Google'  />
+          <CustomButton title={strings.LOG_IN_WITH_FACEBOOK} icon='Facebook'   />
+          <CustomButton title={strings.LOG_IN_WITH_APPLE} icon='Apple'  />
           </View>
           
         </View>
