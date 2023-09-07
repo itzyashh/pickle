@@ -5,6 +5,7 @@ import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faApple, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import { moderateScale } from '../assets/scaling'
 
 const {width} = Dimensions.get('window')
 
@@ -29,26 +30,24 @@ const CustomButton = ({title='Button',onPress=()=>{},primary,icon}) => {
 
   return (
     <TouchableOpacity onPress={onPress} style={[styles.container,!primary && {backgroundColor:colors.themeLight}]} >
-{icon &&    <FontAwesomeIcon icon={iconToApply(icon)} size={20} color={colors.white} />}
+{icon &&    <FontAwesomeIcon icon={iconToApply(icon)} size={moderateScale(20)} color={colors.white} />}
         <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   )
 }
 const styles = StyleSheet.create({
-    container: {
-        
+    container: {        
         backgroundColor: colors.button,
-        height: 50,
-        width: width - 40,
-        borderRadius: 10,
+        height: moderateScale(50),
+        borderRadius: moderateScale(10),
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
         gap: 10,
     },
     image:{
-        height: 40,
-        width: 40,
+        height: moderateScale(40),
+        width: moderateScale(40),
     },
     text: {
         color: colors.white,

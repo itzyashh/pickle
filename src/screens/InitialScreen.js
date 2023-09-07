@@ -9,7 +9,7 @@ import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
 import colors from '../constants/colors';
 import strings from '../constants/lang';
 import CustomButton from '../components/CustomButton';
-import { moderateScale } from '../assets/scaling';
+import { moderateScale, moderateScaleVertical } from '../assets/scaling';
 
 const InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -56,10 +56,14 @@ const InitialScreen = ({navigation}) => {
             </Text>
           </View>
         </View>
-        <View>
+        <View
+          style={{
+            width: '100%',
+            paddingHorizontal: moderateScale(20),}}
+        >
           
-          <CustomButton icon='Phone' primary title={strings.LOG_IN_WITH_PHONE_NUMBER}  />
-          <Text style={[styles.text,{textAlign:'center',marginVertical:20}]} >{strings.OR}</Text>
+          <CustomButton icon='Phone' primary title={strings.LOG_IN_WITH_PHONE_NUMBER} onPress={()=>navigation.navigate(routes.login)}  />
+          <Text style={[styles.text,{textAlign:'center',marginVertical:moderateScaleVertical(20)}]} >{strings.OR}</Text>
           <View
             style={{
               gap: 15,

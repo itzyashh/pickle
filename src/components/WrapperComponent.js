@@ -16,9 +16,6 @@ export default WrapperComponent
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.theme,
-        justifyContent: 'center',
-        alignItems: 'center',
-        
+        backgroundColor: colors.theme,        
     }
 })
