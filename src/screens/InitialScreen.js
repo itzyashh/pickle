@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet} from 'react-native';
 import {routes} from '../navigation/routes';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setUserData} from '../redux/reducers/auth';
 import WrapperComponent from '../components/WrapperComponent';
 import { WithLocalSvg} from 'react-native-svg';
@@ -13,6 +13,7 @@ import { moderateScale, moderateScaleVertical } from '../assets/scaling';
 
 const InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
+  const isDark = useSelector(state => state?.appSettings?.isDark)
 
   const onLogin = () => {
     dispatch(setUserData({isLogged: true}));
@@ -37,20 +38,20 @@ const InitialScreen = ({navigation}) => {
           asset={imagePath.logo}/>
       </View>
         <View>
-          <Text style={styles.text}>
+          <Text style={[styles.text,!isDark&&{color:'#292929'}]}>
             {strings.BY_CLICKING_LOGIN_YOU_AGREE_TO_OUR}
           </Text>
           <View
             style={{
               flexDirection: 'row',
             }}>
-            <Text onPress={goToTerms} style={[styles.text, styles.linkText]}>
+            <Text onPress={goToTerms} style={[styles.text, styles.linkText,!isDark&&{color:'#292929'}]}>
               {strings.TERMS_OF_SERVICE}{' '}
             </Text>
-            <Text style={styles.text}>{strings.AND}</Text>
+            <Text style={[styles.text,!isDark&&{color:'#292929'}]}>{strings.AND}</Text>
             <Text
               onPress={goToPrivacyPolicy}
-              style={[styles.text, styles.linkText]}>
+              style={[styles.text, styles.linkText,!isDark&&{color:'#292929'}]}>
               {' '}
               {strings.PRIVACY_POLICY}
             </Text>
@@ -63,7 +64,7 @@ const InitialScreen = ({navigation}) => {
         >
           
           <CustomButton icon='Phone' primary title={strings.LOG_IN_WITH_PHONE_NUMBER} onPress={()=>navigation.navigate(routes.login)}  />
-          <Text style={[styles.text,{textAlign:'center',marginVertical:moderateScaleVertical(20)}]} >{strings.OR}</Text>
+          <Text style={[styles.text,{textAlign:'center',marginVertical:moderateScaleVertical(20)},!isDark&&{color:'#292929'}]} >{strings.OR}</Text>
           <View
             style={{
               gap: 15,
@@ -80,7 +81,7 @@ const InitialScreen = ({navigation}) => {
         <View
           style={{flexDirection: 'row', gap: 5}}
         >
-          <Text style={styles.text}>{strings.NEW_HERE}</Text>
+          <Text style={[styles.text,!isDark&&{color:'#292929'}]}>{strings.NEW_HERE}</Text>
           <Text onPress={goToSignUp} style={[styles.linkText,{color:'blue'}]} >{strings.SIGN_UP}</Text>
         </View>
       </View>
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: fontFamily.regular,
     color: colors.white,
-    
+    fontSize: moderateScale(15),
   },
   linkText: {
     fontFamily: fontFamily.semiBold,

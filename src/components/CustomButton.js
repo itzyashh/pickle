@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faApple, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import { moderateScale } from '../assets/scaling'
+import { useSelector } from 'react-redux'
 
 const {width} = Dimensions.get('window')
 
 const CustomButton = ({title='Button',onPress=()=>{},primary,icon,fontSize}) => {
+  const isDark = useSelector(state => state?.appSettings?.isDark)
   console.log('primary',primary);
   
   const iconToApply = (icon) => {
@@ -30,8 +32,8 @@ const CustomButton = ({title='Button',onPress=()=>{},primary,icon,fontSize}) => 
 
   return (
     <TouchableOpacity onPress={onPress} style={[styles.container,!primary && {backgroundColor:colors.themeLight}]} >
-{icon &&    <FontAwesomeIcon icon={iconToApply(icon)} size={moderateScale(20)} color={colors.white} />}
-        <Text style={[styles.text,fontSize&&{fontSize:fontSize}]}>{title}</Text>
+{icon &&    <FontAwesomeIcon icon={iconToApply(icon)} size={moderateScale(20)} color={isDark?colors.white:colors.C183D3D} />}
+        <Text style={[styles.text,fontSize&&{fontSize:fontSize},!isDark&&{color:'#292929'}]}>{title}</Text>
     </TouchableOpacity>
   )
 }
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     text: {
         color: colors.white,
         fontFamily: fontFamily.semiBold,
-        
+        fontSize: moderateScale(15),
     }
 })
 export default CustomButton
