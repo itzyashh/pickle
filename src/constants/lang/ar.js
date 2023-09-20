@@ -15,7 +15,8 @@ export default {
     NEW_HERE: 'New here?',
     SIGN_UP: 'Sign Up',
     WELCOME_BACK: 'Welcome back!',
-    WE_ARE_HAPPY_TO_SEE:'We are happy to see you. Please log in to continue.',
+    WE_ARE_HAPPY_TO_SEE_LOGIN:'We are happy to see you. Please log in to continue.',
+    WE_ARE_HAPPY_TO_SEE_SIGN_UP:'We are happy to see you. Please Sign up to continue.',
     EMAIL: 'Email',
     PASSWORD: 'Password',
     SHOW: 'Show',
@@ -28,4 +29,5 @@ export default {
     LAST_NAME: 'Last Name',
     MOBILE_NUMBER: 'Mobile Number',
     NEXT: 'Next',
+    LOGIN:'Login',
 }

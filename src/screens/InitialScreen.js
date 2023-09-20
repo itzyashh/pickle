@@ -25,7 +25,7 @@ const InitialScreen = ({navigation}) => {
     console.log('goToPrivacyPolicy');
   };
   const goToSignUp = () => {
-    console.log('goToSignUp');
+    navigation.navigate(routes.signUp);
   };
   return (
     <WrapperComponent>
