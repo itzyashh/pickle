@@ -8,8 +8,11 @@ import colors from '../constants/colors';
 import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
+  const isDark = useSelector(state => state?.appSettings?.isDark)
+
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [username, setUsername] = useState('');
   const [fullname, setFullname] = useState('');
@@ -20,7 +23,8 @@ const Login = () => {
     <WrapperComponent>
       <Header />
       <View style={styles.container}>
-      <Text style={styles.welcome}>{strings.WELCOME_BACK}</Text>
+      <Text style={[styles.welcome,!isDark&&{color:'#292929'}]}>{strings.WELCOME_BACK}</Text>
+
       <Text style={styles.content} >{strings.WE_ARE_HAPPY_TO_SEE_LOGIN}</Text>
       <View style={{gap:moderateScale(16)}}>
         <CustomTextInput onChangeText={setUsername} placeholder={strings.USERNAME}/>
@@ -29,7 +33,7 @@ const Login = () => {
         <CustomTextInput onChangeText={setPassword} placeholder={strings.PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
         <CustomTextInput onChangeText={setPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
       </View>
-      <Text style={styles.forgot}>{strings.FORGOT_PASSWORD}</Text>
+      <Text style={[styles.forgot,!isDark&&{color:'#292929'}]}>{strings.FORGOT_PASSWORD}</Text>
       </View>
       <View
         style={{

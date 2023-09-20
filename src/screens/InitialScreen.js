@@ -10,6 +10,7 @@ import colors from '../constants/colors';
 import strings from '../constants/lang';
 import CustomButton from '../components/CustomButton';
 import { moderateScale, moderateScaleVertical } from '../assets/scaling';
+import CustomModal from '../components/CustomModal';
 
 const InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -85,6 +86,7 @@ const InitialScreen = ({navigation}) => {
           <Text onPress={goToSignUp} style={[styles.linkText,{color:'blue'}]} >{strings.SIGN_UP}</Text>
         </View>
       </View>
+      <CustomModal isVisible={true} />
     </WrapperComponent>
   );
 };

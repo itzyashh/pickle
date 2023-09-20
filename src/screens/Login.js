@@ -8,8 +8,11 @@ import colors from '../constants/colors';
 import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
+  const isDark = useSelector(state => state?.appSettings?.isDark)
+
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +21,7 @@ const Login = () => {
     <WrapperComponent>
       <Header />
       <View style={styles.container}>
-      <Text style={styles.welcome}>{strings.WELCOME_BACK}</Text>
+      <Text style={[styles.welcome,!isDark&&{color:'#292929'}]}>{strings.WELCOME_BACK}</Text>
       <Text style={styles.content} >{strings.WE_ARE_HAPPY_TO_SEE_LOGIN}</Text>
       <View style={{gap:moderateScale(16)}}>
 
