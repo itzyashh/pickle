@@ -19,6 +19,8 @@ export default {
     WE_ARE_HAPPY_TO_SEE_SIGN_UP:'We are happy to see you. Please Sign up to continue.',
     EMAIL: 'Email',
     PASSWORD: 'Password',
+    CONFIRM_PASSWORD:'Confirm Password',
+
     SHOW: 'Show',
     HIDE: 'Hide',
     FORGOT_PASSWORD: 'Forgot Password?',
@@ -30,4 +32,6 @@ export default {
     MOBILE_NUMBER: 'Mobile Number',
     NEXT: 'Next',
     LOGIN:'Login',
+    USERNAME:'Username',
+    FULLNAME:'Fullname',
 }

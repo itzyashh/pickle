@@ -35,7 +35,7 @@ const Login = () => {
             }}
       >
 
-      <CustomButton  title={strings.LOGIN} />
+      <CustomButton fontSize={moderateScale(16)} title={strings.LOGIN} />
       </View>
     </WrapperComponent>
   );

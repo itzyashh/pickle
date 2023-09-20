@@ -9,7 +9,7 @@ import { moderateScale } from '../assets/scaling'
 
 const {width} = Dimensions.get('window')
 
-const CustomButton = ({title='Button',onPress=()=>{},primary,icon}) => {
+const CustomButton = ({title='Button',onPress=()=>{},primary,icon,fontSize}) => {
   console.log('primary',primary);
   
   const iconToApply = (icon) => {
@@ -31,7 +31,7 @@ const CustomButton = ({title='Button',onPress=()=>{},primary,icon}) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.container,!primary && {backgroundColor:colors.themeLight}]} >
 {icon &&    <FontAwesomeIcon icon={iconToApply(icon)} size={moderateScale(20)} color={colors.white} />}
-        <Text style={styles.text}>{title}</Text>
+        <Text style={[styles.text,fontSize&&{fontSize:fontSize}]}>{title}</Text>
     </TouchableOpacity>
   )
 }

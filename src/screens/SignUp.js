@@ -11,6 +11,8 @@ import Header from '../components/Header';
 
 const Login = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [username, setUsername] = useState('');
+  const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   console.log('secureTextEntry', secureTextEntry);
@@ -21,9 +23,11 @@ const Login = () => {
       <Text style={styles.welcome}>{strings.WELCOME_BACK}</Text>
       <Text style={styles.content} >{strings.WE_ARE_HAPPY_TO_SEE_LOGIN}</Text>
       <View style={{gap:moderateScale(16)}}>
-
+        <CustomTextInput onChangeText={setUsername} placeholder={strings.USERNAME}/>
+        <CustomTextInput onChangeText={setFullname} placeholder={strings.FULLNAME}/>
         <CustomTextInput onChangeText={setEmail} placeholder={strings.EMAIL}/>
         <CustomTextInput onChangeText={setPassword} placeholder={strings.PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
+        <CustomTextInput onChangeText={setPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
       </View>
       <Text style={styles.forgot}>{strings.FORGOT_PASSWORD}</Text>
       </View>
@@ -35,7 +39,7 @@ const Login = () => {
             }}
       >
 
-      <CustomButton  title={strings.LOGIN} />
+      <CustomButton fontSize={moderateScale(16)}  title={strings.SIGN_UP} />
       </View>
     </WrapperComponent>
   );
