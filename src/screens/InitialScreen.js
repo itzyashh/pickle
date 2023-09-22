@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {routes} from '../navigation/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {setUserData} from '../redux/reducers/auth';
@@ -9,16 +9,24 @@ import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
 import colors from '../constants/colors';
 import strings from '../constants/lang';
 import CustomButton from '../components/CustomButton';
-import { moderateScale, moderateScaleVertical } from '../assets/scaling';
+import { height, moderateScale, moderateScaleVertical } from '../assets/scaling';
 import CustomModal from '../components/CustomModal';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faLanguage } from '@fortawesome/free-solid-svg-icons';
 
 const InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const isDark = useSelector(state => state?.appSettings?.isDark)
+  const [isVisible, setIsVisible] = useState(false);
 
   const onLogin = () => {
     dispatch(setUserData({isLogged: true}));
   };
+
+  const onLanguageIconPress = () => {
+    setIsVisible(true)
+  }
 
   const goToTerms = () => {
     console.log('goToTerms');
@@ -32,6 +40,9 @@ const InitialScreen = ({navigation}) => {
   return (
     <WrapperComponent>
       <View style={styles.container}>
+      <TouchableOpacity onPress={onLanguageIconPress} style={[styles.iconContainer,!isDark&&{borderWidth:1,borderColor:colors.themeLight}]}>
+        <FontAwesomeIcon icon={faLanguage} size={moderateScale(25)} onPress={()=>setIsVisible(true)} />
+      </TouchableOpacity>
       <View>
         <WithLocalSvg
           width={moderateScale(54)}
@@ -86,7 +97,22 @@ const InitialScreen = ({navigation}) => {
           <Text onPress={goToSignUp} style={[styles.linkText,{color:'blue'}]} >{strings.SIGN_UP}</Text>
         </View>
       </View>
-      <CustomModal isVisible={true} />
+      <CustomModal isVisible={isVisible}
+        style={{
+          justifyContent:'flex-end',margin:0
+        }}
+       >
+        <View style={{backgroundColor:colors.white
+        ,minHeight:moderateScaleVertical(height/4),
+        borderTopLeftRadius:moderateScale(20),
+        borderTopRightRadius:moderateScale(20),
+        padding:moderateScale(20),
+        }}>
+          <Text style={styles.headerStyle}>Change Language</Text>
+          <Text style={styles.langText}>English</Text>
+          <Text style={styles.langText}>Arabic</Text>
+        </View>
+      </CustomModal>
     </WrapperComponent>
   );
 };
@@ -109,4 +135,26 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.semiBold,
     color: colors.white,
   },
+  iconContainer:{
+    position:'absolute',
+    top:moderateScaleVertical(0),
+    right:moderateScale(20),
+    zIndex:100,
+    height:moderateScale(40),
+    borderRadius:moderateScale(20),
+    backgroundColor:colors.themeLight,
+    width:moderateScale(40),
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  headerStyle:{
+    fontFamily:fontFamily.semiBold,
+    fontSize:moderateScale(20),
+    marginBottom:moderateScaleVertical(10)
+  },
+  langText:{
+    fontFamily:fontFamily.regular,
+    fontSize:moderateScale(15),
+    marginBottom:moderateScaleVertical(5)
+  }
 });
