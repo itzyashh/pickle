@@ -13,11 +13,11 @@ import { height, moderateScale, moderateScaleVertical } from '../assets/scaling'
 import CustomModal from '../components/CustomModal';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faLanguage } from '@fortawesome/free-solid-svg-icons';
-
-const InitialScreen = ({navigation}) => {
+import { faCircleCheck, faGear, faLanguage, faSliders } from '@fortawesome/free-solid-svg-icons';
+import { setLanguage, setTheme } from '../redux/reducers/appSettings';
+ InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const isDark = useSelector(state => state?.appSettings?.isDark)
+  const {isDark,language} = useSelector(state => state?.appSettings)
   const [isVisible, setIsVisible] = useState(false);
 
   const onLogin = () => {
@@ -41,7 +41,7 @@ const InitialScreen = ({navigation}) => {
     <WrapperComponent>
       <View style={styles.container}>
       <TouchableOpacity onPress={onLanguageIconPress} style={[styles.iconContainer,!isDark&&{borderWidth:1,borderColor:colors.themeLight}]}>
-        <FontAwesomeIcon icon={faLanguage} size={moderateScale(25)} onPress={()=>setIsVisible(true)} />
+        <FontAwesomeIcon icon={faSliders} size={moderateScale(18)} onPress={()=>setIsVisible(true)} />
       </TouchableOpacity>
       <View>
         <WithLocalSvg
@@ -98,6 +98,7 @@ const InitialScreen = ({navigation}) => {
         </View>
       </View>
       <CustomModal isVisible={isVisible}
+      onBackdropPress={()=>setIsVisible(false)}
         style={{
           justifyContent:'flex-end',margin:0
         }}
@@ -109,8 +110,55 @@ const InitialScreen = ({navigation}) => {
         padding:moderateScale(20),
         }}>
           <Text style={styles.headerStyle}>Change Language</Text>
+          <TouchableOpacity
+            onPress={() => dispatch(setLanguage('en'))}
+            style={{
+              flexDirection: 'row',
+              gap: moderateScale(10),
+              alignItems:'center',
+            }}
+          >
+
           <Text style={styles.langText}>English</Text>
+       { language=='en'&&   <FontAwesomeIcon icon={faCircleCheck} />}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => dispatch(setLanguage('ar'))}
+            style={{
+              flexDirection: 'row',
+              gap: moderateScale(10),
+              alignItems:'center',
+            }}
+          >
+
           <Text style={styles.langText}>Arabic</Text>
+       { language=='ar'&&   <FontAwesomeIcon icon={faCircleCheck} />}
+            </TouchableOpacity>
+          <Text style={styles.headerStyle}>Change Theme</Text>
+          <TouchableOpacity
+            onPress={() => dispatch(setTheme(true))}
+            style={{
+              flexDirection: 'row',
+              gap: moderateScale(10),
+              alignItems:'center',
+            }}
+          >
+
+          <Text style={styles.langText}>Dark</Text>
+       { isDark &&   <FontAwesomeIcon icon={faCircleCheck} />}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => dispatch(setTheme(false))}
+            style={{
+              flexDirection: 'row',
+              gap: moderateScale(10),
+              alignItems:'center',
+            }}
+          >
+
+          <Text style={styles.langText}>Light</Text>
+       { !isDark&&<FontAwesomeIcon icon={faCircleCheck} />}
+            </TouchableOpacity>
         </View>
       </CustomModal>
     </WrapperComponent>
