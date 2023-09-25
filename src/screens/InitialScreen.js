@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, I18nManager} from 'react-native';
 import {routes} from '../navigation/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {setUserData} from '../redux/reducers/auth';
@@ -15,17 +15,36 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleCheck, faGear, faLanguage, faSliders } from '@fortawesome/free-solid-svg-icons';
 import { setLanguage, setTheme } from '../redux/reducers/appSettings';
+import { langData } from '../constants/lang/langtheme/lang';
+import RNRestart from 'react-native-restart'; // Import package from node modules
+
  InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {isDark,language} = useSelector(state => state?.appSettings)
   const [isVisible, setIsVisible] = useState(false);
-
+  console.log('language',language)
   const onLogin = () => {
     dispatch(setUserData({isLogged: true}));
   };
 
   const onLanguageIconPress = () => {
     setIsVisible(true)
+  }
+  
+  const changeLanguage = (lang) => {
+    RNRestart.restart();
+    if (lang == 'ar') {
+      I18nManager.forceRTL(true);
+      strings.setLanguage('ar');
+      dispatch(setLanguage('ar'))
+      RNRestart.restart();
+    }
+    else {
+      I18nManager.forceRTL(false);
+      strings.setLanguage('en');
+      dispatch(setLanguage('en'))
+      RNRestart.restart();
+    }
   }
 
   const goToTerms = () => {
@@ -110,30 +129,26 @@ import { setLanguage, setTheme } from '../redux/reducers/appSettings';
         padding:moderateScale(20),
         }}>
           <Text style={styles.headerStyle}>Change Language</Text>
-          <TouchableOpacity
-            onPress={() => dispatch(setLanguage('en'))}
+       
+
+        {
+          langData.map((item)=>(
+            <TouchableOpacity
+            key={item.id}
+            onPress={()=>changeLanguage(item.code)}
             style={{
               flexDirection: 'row',
               gap: moderateScale(10),
               alignItems:'center',
             }}
           >
-
-          <Text style={styles.langText}>English</Text>
-       { language=='en'&&   <FontAwesomeIcon icon={faCircleCheck} />}
+          <Text style={styles.langText}>{item.name}</Text>
+       { language==item.code &&   <FontAwesomeIcon icon={faCircleCheck} />}
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => dispatch(setLanguage('ar'))}
-            style={{
-              flexDirection: 'row',
-              gap: moderateScale(10),
-              alignItems:'center',
-            }}
-          >
+          ))
 
-          <Text style={styles.langText}>Arabic</Text>
-       { language=='ar'&&   <FontAwesomeIcon icon={faCircleCheck} />}
-            </TouchableOpacity>
+        }
+
           <Text style={styles.headerStyle}>Change Theme</Text>
           <TouchableOpacity
             onPress={() => dispatch(setTheme(true))}
