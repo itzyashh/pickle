@@ -17,6 +17,7 @@ import { faCircleCheck, faGear, faLanguage, faSliders } from '@fortawesome/free-
 import { setLanguage, setTheme } from '../redux/reducers/appSettings';
 import { langData } from '../constants/lang/langtheme/lang';
 import RNRestart from 'react-native-restart'; // Import package from node modules
+import { storeData } from '../utils/helper';
 
  InitialScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -32,12 +33,12 @@ import RNRestart from 'react-native-restart'; // Import package from node module
   }
   
   const changeLanguage = (lang) => {
-    RNRestart.restart();
+    // RNRestart.restart();
     if (lang == 'ar') {
       I18nManager.forceRTL(true);
       strings.setLanguage('ar');
       dispatch(setLanguage('ar'))
-      RNRestart.restart();
+      // RNRestart.restart();
     }
     else {
       I18nManager.forceRTL(false);
@@ -151,7 +152,9 @@ import RNRestart from 'react-native-restart'; // Import package from node module
 
           <Text style={styles.headerStyle}>Change Theme</Text>
           <TouchableOpacity
-            onPress={() => dispatch(setTheme(true))}
+            onPress={() =>{ 
+              storeData('isDark','true').then(()=>dispatch(setTheme(true)))
+              }}
             style={{
               flexDirection: 'row',
               gap: moderateScale(10),
@@ -163,7 +166,9 @@ import RNRestart from 'react-native-restart'; // Import package from node module
        { isDark &&   <FontAwesomeIcon icon={faCircleCheck} />}
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => dispatch(setTheme(false))}
+            onPress={() =>{ 
+              storeData('isDark','false').then(()=>dispatch(setTheme(false)))
+              }}
             style={{
               flexDirection: 'row',
               gap: moderateScale(10),
