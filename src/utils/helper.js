@@ -21,3 +21,4 @@ export  const getData = async (key) => {
         Alert.alert("Error", e.message);
     }
   };
+

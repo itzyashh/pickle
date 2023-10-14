@@ -136,7 +136,7 @@ import { storeData } from '../utils/helper';
           langData.map((item)=>(
             <TouchableOpacity
             key={item.id}
-            onPress={()=>changeLanguage(item.code)}
+            onPress={()=>storeData('language',item.code).then(()=>changeLanguage(item.code))}
             style={{
               flexDirection: 'row',
               gap: moderateScale(10),
