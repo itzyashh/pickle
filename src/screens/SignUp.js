@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable, Keyboard, KeyboardAvoidingView} from 'react-native';
 import React, { useState } from 'react';
 import WrapperComponent from '../components/WrapperComponent';
 import CustomTextInput from '../components/CustomTextInput';
@@ -9,6 +9,7 @@ import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
 import { useSelector } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const Login = () => {
   const isDark = useSelector(state => state?.appSettings?.isDark)
@@ -21,6 +22,7 @@ const Login = () => {
   console.log('secureTextEntry', secureTextEntry);
   return (
     <WrapperComponent>
+    <KeyboardAwareScrollView>
       <Header />
       <View style={styles.container}>
       <Text style={[styles.welcome,!isDark&&{color:'#292929'}]}>{strings.WELCOME_BACK}</Text>
@@ -37,14 +39,15 @@ const Login = () => {
       </View>
       <View
         style={{
-          flex:0.2,
+          flex:0.3,
           paddingHorizontal:moderateScale(16),
           
             }}
       >
 
-      <CustomButton fontSize={moderateScale(16)}  title={strings.SIGN_UP} />
+      <CustomButton primary fontSize={moderateScale(16)}  title={strings.SIGN_UP} />
       </View>
+    </KeyboardAwareScrollView>
     </WrapperComponent>
   );
 };
