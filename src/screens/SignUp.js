@@ -10,8 +10,9 @@ import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
 import { useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { routes } from '../navigation/routes';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const isDark = useSelector(state => state?.appSettings?.isDark)
 
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -19,7 +20,12 @@ const Login = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  console.log('secureTextEntry', secureTextEntry);
+
+  const handleSignUp = () => {
+    Keyboard.dismiss();
+    navigation.navigate(routes.otp);
+  }
+
   return (
     <WrapperComponent>
     <KeyboardAwareScrollView>
@@ -45,7 +51,7 @@ const Login = () => {
             }}
       >
 
-      <CustomButton primary fontSize={moderateScale(16)}  title={strings.SIGN_UP} />
+      <CustomButton onPress={handleSignUp} primary fontSize={moderateScale(16)}  title={strings.SIGN_UP} />
       </View>
     </KeyboardAwareScrollView>
     </WrapperComponent>

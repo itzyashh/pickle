@@ -33,5 +33,8 @@ export default {
     LOGIN: 'تسجيل الدخول',
     USERNAME: 'اسم المستخدم',
     FULLNAME: 'الاسم الكامل',
-    
+    ENTER4DIGITOTP: 'أدخل رمز OTP المكون من 4 أرقام',
+    WE_ARE_HAPPY_TO_SEE_OTP: 'نحن سعداء برؤيتك. يرجى إدخال OTP للمتابعة.',
+    SUBMIT: 'إرسال',
+    RESEND_OTP: 'إعادة إرسال OTP',    
 }

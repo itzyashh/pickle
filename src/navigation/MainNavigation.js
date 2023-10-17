@@ -12,6 +12,7 @@ import { faBell, faCirclePlus, faHome, faHouse, faPlus, faSearch, faUser } from 
 import SearchScreen from '../screens/SearchScreen';
 import Notification from '../screens/Notification';
 import ProfileScreen from '../screens/ProfileScreen';
+import OtpScreen from '../screens/OtpScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,7 @@ const AuthStack = () => {
       <Stack.Screen name={routes.initial} component={InitialScreen} />
       <Stack.Screen name={routes.login} component={Login} />
       <Stack.Screen name={routes.signUp} component={SignUp} />
+      <Stack.Screen name={routes.otp} component={OtpScreen} />
     </Stack.Navigator>
   );
 };

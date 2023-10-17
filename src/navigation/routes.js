@@ -7,4 +7,5 @@ export const routes = {
     search: 'Search',
     notifications: 'Notifications',
     profile: 'Profile',
+    otp: 'OtpScreen',
 }

@@ -34,4 +34,8 @@ export default {
     LOGIN:'Login',
     USERNAME:'Username',
     FULLNAME:'Fullname',
+    ENTER4DIGITOTP:'Enter 4 digit OTP',
+    WE_ARE_HAPPY_TO_SEE_OTP:'We are happy to see you. Please enter OTP to continue.',
+    SUBMIT:'Submit',
+    RESEND_OTP:'Resend OTP',
 }
