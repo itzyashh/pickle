@@ -4,6 +4,7 @@ export default {
     C183D3D: '#183D3D',
     button: 'red',
     white: '#FFFFFF',
+    whiteO70:'rgba(255,255,255,0.7)',
     grayO70:'rgba(128,128,128,0.7)',
     grayO50:'rgba(128,128,128,0.5)',
     grayO30:'rgba(128,128,128,0.3)',

@@ -41,10 +41,22 @@ const HomeScreen = () => {
         <CustomImage type={'avatar'} source={{uri:'https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?size=626&ext=jpg'}} />
         <View style={{gap:moderateScale(5)}}>
         <Text style={[styles.name,isDark&&{color:'#fff'}]}>Maria Ann</Text>
-        <Text>Sector 1, Bucharest</Text>
+        <Text style={[styles.location,isDark&&{color:colors.whiteO70}]}>Sector 1, Bucharest</Text>
         </View>
     </View>
     <FontAwesomeIcon color={isDark?colors.white:colors.black} icon={faEllipsis} size={20} />
+    </View>
+    <View style={styles.postImage}>
+
+    <CustomImage type={'full'} source={{uri:'https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?size=626&ext=jpg'}} />
+    </View>
+    <View style={styles.captionContainer}>
+
+    <Text style={[styles.caption,isDark&&{color:'#fff'}]}>
+        lorem ipsum dolor sit amet, consectetur adipiscing elit. asdsa
+        Donec auctor, nunc vel ultricies rutrum, augue eros ultrices
+
+    </Text>
     </View>
 
     </View>
@@ -57,7 +69,7 @@ const HomeScreen = () => {
     <FlashList
       data={DATA}
       renderItem={renderItem}
-      estimatedItemSize={100}
+      estimatedItemSize={500}
       keyExtractor={item => item.id}
     />
     </WrapperComponent>

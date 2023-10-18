@@ -9,12 +9,25 @@ const CustomImage = ({source={uri:'https://placehold.co/600x400/png'},type}) => 
         switch (type) {
             case 'avatar':
                 return styles.avatar
+
+            case 'full':
+                return styles.full
             default:
                 return styles.image
         }
     }
 
-  return <FastImage source={source} style={styleToApply()} />
+  return <FastImage source={{
+
+    uri:source.uri,
+    priority: FastImage.priority.normal,
+    
+
+
+  }} style={styleToApply()} 
+
+    resizeMode='cover'
+  />
     
 }
 
@@ -29,5 +42,9 @@ const styles = StyleSheet.create({
         width: moderateScale(60),
         height: moderateScale(60),
         borderRadius: moderateScale(30),
-    }
+    },
+    full: {
+        width: '100%',
+        height: '100%',
+    },
 })
