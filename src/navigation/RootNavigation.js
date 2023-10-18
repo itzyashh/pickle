@@ -38,7 +38,8 @@ const RootNavigation = () => {
     const userData = useSelector(state => state.auth);
     console.log(userData);
 
-    const isLoggedIn = userData.isLogged
+    // const isLoggedIn = userData.isLogged
+    const isLoggedIn = true
     return isLoggedIn ? <MainStack /> : <AuthStack />;
 }
 

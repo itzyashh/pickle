@@ -5,7 +5,7 @@ import {setUserData} from '../redux/reducers/auth';
 import WrapperComponent from '../components/WrapperComponent';
 import { WithLocalSvg} from 'react-native-svg';
 import imagePath from '../constants/imagePath';
-import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
+import fontFamily from '../assets/fonts/fontFamily';
 import colors from '../constants/colors';
 import strings from '../constants/lang';
 import CustomButton from '../components/CustomButton';

@@ -1,7 +1,7 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import colors from '../constants/colors'
-import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily'
+import fontFamily from '../assets/fonts/fontFamily'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faApple, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'

@@ -5,10 +5,12 @@ import CustomTextInput from '../components/CustomTextInput';
 import {moderateScale, textScale} from '../assets/scaling';
 import strings from '../constants/lang';
 import colors from '../constants/colors';
-import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
+import fontFamily from '../assets/fonts/fontFamily';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
 import { useSelector } from 'react-redux';
+import validation from '../utils/validation';
+import { showError } from '../utils/helper';
 
 const Login = () => {
   const isDark = useSelector(state => state?.appSettings?.isDark)
@@ -17,6 +19,20 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   console.log('secureTextEntry', secureTextEntry);
+
+  const isValid = () => {
+    const error = validation({email,password})
+    if(error){
+      showError(error)
+      return
+    }
+    return true
+  }
+
+  const onSubmit = () => {
+    isValid()&&console.log('onSubmit');
+   }
+
   return (
     <WrapperComponent>
     <Pressable onPress={Keyboard.dismiss} style={{flex:1}}>
@@ -40,7 +56,7 @@ const Login = () => {
             }}
       >
 
-      <CustomButton fontSize={moderateScale(16)} title={strings.LOGIN} />
+      <CustomButton fontSize={moderateScale(16)} onPress={onSubmit} title={strings.LOGIN} />
       </KeyboardAvoidingView>
     </Pressable>
     </WrapperComponent>

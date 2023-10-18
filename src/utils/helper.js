@@ -1,5 +1,6 @@
 import { Alert } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { showMessage } from "react-native-flash-message";
 
 export const storeData = async (key, value) => {
     try {
@@ -22,3 +23,18 @@ export  const getData = async (key) => {
     }
   };
 
+export const showError = (message) => {
+  showMessage({
+    message: message,
+    type: "danger",
+    icon: "danger",
+  });
+}
+
+export const showSuccess = (message) => {
+  showMessage({
+    message: message,
+    type: "success",
+    icon: "success",
+  });
+}

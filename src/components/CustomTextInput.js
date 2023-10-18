@@ -2,7 +2,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { moderateScale, textScale } from '../assets/scaling'
 import colors from '../constants/colors'
-import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily'
+import fontFamily from '../assets/fonts/fontFamily'
 
 const CustomTextInput = ({
   placeholder,

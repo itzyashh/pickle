@@ -7,7 +7,7 @@ const WrapperComponent = ({style={},children}) => {
   console.log('isDark',isDark);
 
   return (
-    <View style={[styles.container,!isDark&&{backgroundColor:colors.white}]}>
+    <View style={[styles.container,style,!isDark&&{backgroundColor:colors.white}]}>
     <SafeAreaView style={{flex:1}} >
         {children}
     </SafeAreaView>

@@ -5,7 +5,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import {moderateScale, textScale} from '../assets/scaling';
 import strings from '../constants/lang';
 import colors from '../constants/colors';
-import fontFamily from '../../android/app/src/main/assets/fonts/fontFamily';
+import fontFamily from '../assets/fonts/fontFamily';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
 import { useSelector } from 'react-redux';
