@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useCallback } from 'react'
 import strings from '../constants/lang'
 import WrapperComponent from '../components/WrapperComponent'
 import { FlashList } from '@shopify/flash-list'
 import { styles } from './styles/homeStyle'
 import CustomImage from '../components/CustomImage'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsis, faShare } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import colors from '../constants/colors'
 import { moderateScale, verticalScale } from '../assets/scaling'
@@ -33,7 +33,7 @@ const HomeScreen = () => {
   const {isDark,language} = useSelector(state => state?.appSettings)
 
   
-  const renderItem = ({ item }) => (
+  const renderItem = useCallback( ({ item }) => (
     <View style={styles.box}>
     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
     <View style={{flexDirection:'row',alignItems:'center',gap:20,}}>
@@ -57,10 +57,28 @@ const HomeScreen = () => {
         Donec auctor, nunc vel ultricies rutrum, augue eros ultrices
 
     </Text>
+    <View style={{
+      justifyContent:'space-between',
+      flexDirection:'row',
+          alignItems:'center',
+          marginTop:verticalScale(10),
+    }}>
+      <View
+        style={{
+          flexDirection:'row',
+          gap:moderateScale(20),
+        }}
+      >
+        <Text style={[styles.likeAndComment,{color:isDark?colors.white:colors.black}]}>{`Comments: ${245}`}</Text>
+        <Text style={[styles.likeAndComment,{color:isDark?colors.white:colors.black}]}>{`Likes: ${20}`}</Text>
+      </View>
+      <FontAwesomeIcon color={isDark?colors.white:colors.black} icon={faShare} size={20} />
+    </View>
     </View>
 
     </View>
   )
+  ,[])
 
 
 

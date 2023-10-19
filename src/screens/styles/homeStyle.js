@@ -23,17 +23,22 @@ export const styles = StyleSheet.create({
         color:colors.grayO50,
     },
     postImage:{
-        marginTop:verticalScale(10),
+        marginTop:verticalScale(20),
         width:'100%',
         height:moderateScaleVertical(400),
         overflow:'hidden',
     },
     captionContainer:{
-        marginTop:verticalScale(10),
+        marginTop:verticalScale(20),
         paddingHorizontal:moderateScale(12)
     },
     caption:{
         fontFamily:fontFamily.regular,
         fontSize:moderateScale(16),
-    }
+    },
+    likeAndComment:{
+        fontFamily:fontFamily.regular,
+        fontSize:moderateScale(16),
+        
+    },
 });
