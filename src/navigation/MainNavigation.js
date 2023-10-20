@@ -10,9 +10,9 @@ const {default: InitialScreen} = require('../screens/InitialScreen');
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBell, faCirclePlus, faHome, faHouse, faPlus, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import SearchScreen from '../screens/SearchScreen';
-import Notification from '../screens/Notification';
 import ProfileScreen from '../screens/ProfileScreen';
 import OtpScreen from '../screens/OtpScreen';
+import NotificationScreen from '../screens/NotificationScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +52,7 @@ const MainStack = () => {
             tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faCirclePlus}  color={focused ? 'red' : 'red'} size={20} />
         }}
        />
-       <Tab.Screen name={routes.notifications} component={Notification}
+       <Tab.Screen name={routes.notifications} component={NotificationScreen}
         options={{
             tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faBell}  color={focused ? 'blue' : 'black'} size={20} />
         }}

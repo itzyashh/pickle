@@ -12,6 +12,8 @@ const CustomImage = ({source={uri:'https://placehold.co/600x400/png'},type,image
 
             case 'full':
                 return styles.full
+            case 'circleIcon':
+                return styles.circleIcon
             default:
                 return {...styles.image,...imageStyle}
         }
@@ -47,5 +49,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    circleIcon:{
+        width:moderateScale(50),
+        height:moderateScale(50),
+        borderRadius:moderateScale(25),
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'rgba(0,0,0,0.5)'
+    }
     
 })
