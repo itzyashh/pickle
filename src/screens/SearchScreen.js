@@ -1,4 +1,4 @@
-  import { Dimensions, StyleSheet, Text, View } from 'react-native'
+  import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
   import React, { useCallback } from 'react'
   import WrapperComponent from '../components/WrapperComponent'
   import { FlashList } from '@shopify/flash-list'
@@ -10,10 +10,10 @@ import { styles } from './styles/searchScreenStyle'
   const SearchScreen = () => {
   const {width,height} = Dimensions.get('window')
     const renderItem = useCallback( ({ item }) => (
-  <View style={{borderWidth:1,}}>
+  <TouchableOpacity style={{borderWidth:1,}}>
 
       <CustomImage imageStyle={{width:width/3,height:moderateScale(200)}}/>
-  </View>
+  </TouchableOpacity>
     ),[])
 
     return (

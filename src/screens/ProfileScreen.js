@@ -1,21 +1,21 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, Touchable, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import WrapperComponent from '../components/WrapperComponent';
 import CustomImage from '../components/CustomImage';
 import {styles} from './styles/ProfileStyle';
 import {useSelector} from 'react-redux';
 import colors from '../constants/colors';
-import {moderateScale} from '../assets/scaling';
+import {moderateScale, verticalScale} from '../assets/scaling';
 import {FlashList} from '@shopify/flash-list';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 const ProfileScreen = () => {
   const {isDark, language} = useSelector(state => state?.appSettings);
-
+  const {width, height} = Dimensions.get('window');
   const listHeader = () => {
     return (
-      <>
+      <View style={{marginBottom:verticalScale(16)}}>
         <View
           style={{
             flexDirection: 'row',
@@ -51,15 +51,16 @@ const ProfileScreen = () => {
           <Text style={[styles.dashboardTitle,{color:!isDark&&colors.gray}]}>Dashboard</Text>
           <Text style={[styles.dashboardText]}>1k followers reached in last 30 days</Text>
         </View>
-      </>
+      </View>
     );
   };
 
   const renderItem = ({item}) => {
     return (
-      <Text style={{color: isDark ? colors.white : colors.black}}>
-        Item {item.id}
-      </Text>
+      <TouchableOpacity style={{borderWidth:1,}}>
+
+      <CustomImage imageStyle={{width:width/3,height:moderateScale(200)}}/>
+  </TouchableOpacity>
     );
   };
 
@@ -71,6 +72,9 @@ const ProfileScreen = () => {
           data={[{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}]}
           renderItem={renderItem}
           keyExtractor={item => item.id || String(index)}
+          numColumns={3}
+          estimatedItemSize={200}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </WrapperComponent>
