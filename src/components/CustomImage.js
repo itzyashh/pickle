@@ -14,6 +14,8 @@ const CustomImage = ({source={uri:'https://placehold.co/600x400/png'},type,image
                 return styles.full
             case 'circleIcon':
                 return styles.circleIcon
+            case 'avatarLarge':
+                return styles.avatarLarge
             default:
                 return {...styles.image,...imageStyle}
         }
@@ -56,6 +58,11 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         backgroundColor:'rgba(0,0,0,0.5)'
+    },
+    avatarLarge:{
+        width:moderateScale(85),
+        height:moderateScale(85),
+        borderRadius:moderateScale(50),
     }
     
 })
