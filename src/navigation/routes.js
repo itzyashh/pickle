@@ -8,4 +8,6 @@ export const routes = {
     notifications: 'Notifications',
     profile: 'Profile',
     otp: 'OtpScreen',
+    tabStack: 'TabStack',
+    editProfile: 'EditProfile',
 }

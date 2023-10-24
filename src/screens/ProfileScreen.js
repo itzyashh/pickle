@@ -9,8 +9,12 @@ import {moderateScale, verticalScale} from '../assets/scaling';
 import {FlashList} from '@shopify/flash-list';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { routes } from '../navigation/routes';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
+  const onEdit = () => {
+    navigation.navigate(routes.editProfile)
+  }
   const {isDark, language} = useSelector(state => state?.appSettings);
   const {width, height} = Dimensions.get('window');
   const listHeader = () => {
@@ -39,7 +43,9 @@ const ProfileScreen = () => {
               john@email.com
             </Text>
           </View>
+          <TouchableOpacity onPress={onEdit}>
           <FontAwesomeIcon icon={faPenToSquare} size={moderateScale(20)} color={isDark?colors.white:colors.black} />
+          </TouchableOpacity>
         </View>
         <Text
           style={[styles.bio, {color: isDark ? colors.white : colors.black}]}>

@@ -13,6 +13,7 @@ import SearchScreen from '../screens/SearchScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import OtpScreen from '../screens/OtpScreen';
 import NotificationScreen from '../screens/NotificationScreen';
+import EditProfile from '../screens/EditProfile';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -30,41 +31,55 @@ const AuthStack = () => {
   );
 };
 
-const MainStack = () => {
+const TabStack = () => {
+
   return (
     <Tab.Navigator
+    screenOptions={{
+      headerShown: false,
+      tabBarShowLabel: false,
+    }}>
+   <Tab.Screen name={routes.home} component={HomeScreen}
+      options={{
+          tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faHouse}  color={focused ? 'blue' : 'black'} size={20} />
+      }}
+     />
+     <Tab.Screen name={routes.search} component={SearchScreen}
+      options={{
+          tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faSearch}  color={focused ? 'blue' : 'black'} size={20} />
+      }}
+       />
+    <Tab.Screen name={routes.createPost} component={CreatePost}
+      options={{
+          tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faCirclePlus}  color={focused ? 'red' : 'red'} size={20} />
+      }}
+     />
+     <Tab.Screen name={routes.notifications} component={NotificationScreen}
+      options={{
+          tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faBell}  color={focused ? 'blue' : 'black'} size={20} />
+      }}
+       />
+       <Tab.Screen name={routes.profile} component={ProfileScreen}
+      options={{
+          tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faUser}  color={focused ? 'blue' : 'black'} size={20} />
+      }}
+       />
+
+
+  </Tab.Navigator>
+  );
+}
+
+const MainStack = () => {
+  return (
+    <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
-      }}>
-     <Tab.Screen name={routes.home} component={HomeScreen}
-        options={{
-            tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faHouse}  color={focused ? 'blue' : 'black'} size={20} />
-        }}
-       />
-       <Tab.Screen name={routes.search} component={SearchScreen}
-        options={{
-            tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faSearch}  color={focused ? 'blue' : 'black'} size={20} />
-        }}
-         />
-      <Tab.Screen name={routes.createPost} component={CreatePost}
-        options={{
-            tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faCirclePlus}  color={focused ? 'red' : 'red'} size={20} />
-        }}
-       />
-       <Tab.Screen name={routes.notifications} component={NotificationScreen}
-        options={{
-            tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faBell}  color={focused ? 'blue' : 'black'} size={20} />
-        }}
-         />
-         <Tab.Screen name={routes.profile} component={ProfileScreen}
-        options={{
-            tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faUser}  color={focused ? 'blue' : 'black'} size={20} />
-        }}
-         />
-
-
-    </Tab.Navigator>
+      }}
+    >
+    <Stack.Screen name={routes.tabStack} component={TabStack}  />
+    <Stack.Screen name={routes.editProfile} component={EditProfile} />
+    </Stack.Navigator>
   );
 };
 

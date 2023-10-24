@@ -38,4 +38,5 @@ export default {
     WE_ARE_HAPPY_TO_SEE_OTP:'We are happy to see you. Please enter OTP to continue.',
     SUBMIT:'Submit',
     RESEND_OTP:'Resend OTP',
+    EDIT_PROFILE:'Edit Profile',
 }

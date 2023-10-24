@@ -18,7 +18,8 @@ const DATA = [{
 }, {
   id: '2',
   title: 'Second Item',
-  time:'15 min ago'
+  time:'15 min ago',
+  activity:'liked your post'
 }, {
   id: '3',
   title: 'Third Item',
