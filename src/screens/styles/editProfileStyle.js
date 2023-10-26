@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "../../constants/colors";
-import { moderateScale } from "../../assets/scaling";
+import { moderateScale, verticalScale, } from "../../assets/scaling";
 
 export const styles = StyleSheet.create({
     iconContainer:{
@@ -13,7 +13,10 @@ export const styles = StyleSheet.create({
         right:0,
         bottom:moderateScale(10)
     },
-    iconPosition:{
-       
+    container:{
+        marginTop:verticalScale(30),
+        gap:verticalScale(20),
+        marginHorizontal:moderateScale(20)
     },
+
 })

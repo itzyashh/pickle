@@ -37,5 +37,9 @@ export default {
     WE_ARE_HAPPY_TO_SEE_OTP: 'نحن سعداء برؤيتك. يرجى إدخال OTP للمتابعة.',
     SUBMIT: 'إرسال',
     RESEND_OTP: 'إعادة إرسال OTP',
-    EDIT_PROFILE: 'تعديل الملف الشخصي',    
+    EDIT_PROFILE: 'تعديل الملف الشخصي',
+    SAVE: 'حفظ',
+    BIO: 'نبذة',
+    CHANGE_PASSWORD: 'تغيير كلمة المرور',
+    ADD_LINKS: 'إضافة روابط',    
 }

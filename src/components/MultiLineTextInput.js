@@ -4,7 +4,7 @@ import { moderateScale, textScale } from '../assets/scaling'
 import colors from '../constants/colors'
 import fontFamily from '../assets/fonts/fontFamily'
 
-const CustomTextInput = ({
+const MultiLineTextInput = ({
   placeholder,
   onChangeText,
   placeholderTextColor=colors.C183D3D,
@@ -29,18 +29,20 @@ const CustomTextInput = ({
   )
 }
 
-export default CustomTextInput
+export default MultiLineTextInput
 
 const styles = StyleSheet.create({
     container: {
-        height:moderateScale(52),
+        minHeight:moderateScale(52),
+        maxHeight:moderateScale(150),
         borderRadius:moderateScale(8),
+        paddingVertical:moderateScale(8),
         backgroundColor:colors.themeLight,
         justifyContent:'center',
         paddingHorizontal:moderateScale(16),
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between'
+
         }
         ,
     textInput: {

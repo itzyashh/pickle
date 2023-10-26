@@ -39,4 +39,8 @@ export default {
     SUBMIT:'Submit',
     RESEND_OTP:'Resend OTP',
     EDIT_PROFILE:'Edit Profile',
+    SAVE:'Save',
+    BIO:'Bio',
+    CHANGE_PASSWORD:'Change Password',
+    ADD_LINKS:'Add Links',
 }
