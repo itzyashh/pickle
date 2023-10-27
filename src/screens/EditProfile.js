@@ -25,6 +25,7 @@ const EditProfile = () => {
   const [password, setPassword] = React.useState('');
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
   const [changePasswordModal, setChangePasswordModal] = React.useState(false);
+  const [addLinksModal, setAddLinksModal] = React.useState(false);
 
 
 
@@ -84,7 +85,7 @@ const EditProfile = () => {
           />
         <CustomButton
           title={strings.ADD_LINKS}
-          onPress={() => {}}
+          onPress={() => setAddLinksModal(true)}
           containerStyle={{backgroundColor:' transparent ',
           borderWidth:1,
           borderColor:isDark?colors.white:colors.black,
@@ -98,6 +99,25 @@ const EditProfile = () => {
         isVisible={changePasswordModal}
         avoidKeyboard
         onBackdropPress={()=>setChangePasswordModal(false)}
+        key={'1'}
+        >
+      
+          <View style={[styles.modalView,{backgroundColor:isDark?colors.theme:colors.themeLight}]}>
+          <View style={{gap:verticalScale(10),marginBottom:verticalScale(15)}}>
+
+          <CustomTextInput onChangeText={setPassword} placeholder={strings.OLD_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
+        <CustomTextInput onChangeText={setPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
+          </View>
+
+          <CustomButton title={strings.CHANGE_PASSWORD} onPress={()=>{}}/>
+          </View>
+        </CustomModal>
+      <CustomModal
+        style={{margin:0,justifyContent:'flex-end'}}
+        isVisible={addLinksModal}
+        avoidKeyboard
+        onBackdropPress={()=>setAddLinksModal(false)}
+        key={'2'}
         >
       
           <View style={[styles.modalView,{backgroundColor:isDark?colors.theme:colors.themeLight}]}>
