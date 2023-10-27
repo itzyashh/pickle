@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import React from 'react';
 import WrapperComponent from '../components/WrapperComponent';
 import Header from '../components/Header';
@@ -13,6 +13,8 @@ import {styles} from './styles/editProfileStyle';
 import CustomTextInput from '../components/CustomTextInput';
 import MultiLineTextInput from '../components/MultiLineTextInput';
 import CustomButton from '../components/CustomButton';
+import ReactNativeModal from 'react-native-modal';
+import CustomModal from '../components/CustomModal';
 
 const EditProfile = () => {
   const {isDark, language} = useSelector(state => state?.appSettings);
@@ -20,6 +22,10 @@ const EditProfile = () => {
   const [userName, setUserName] = React.useState('');
   const [fullName, setFullName] = React.useState('');
   const [bio, setBio] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+  const [changePasswordModal, setChangePasswordModal] = React.useState(false);
+
 
 
   const onSave = () => {
@@ -70,7 +76,7 @@ const EditProfile = () => {
         />
         <CustomButton
           title={strings.CHANGE_PASSWORD}
-          onPress={() => {}}
+          onPress={() => setChangePasswordModal(true)}
           containerStyle={{backgroundColor:' transparent ',
           borderWidth:1,
           borderColor:isDark?colors.white:colors.black,
@@ -84,8 +90,26 @@ const EditProfile = () => {
           borderColor:isDark?colors.white:colors.black,
           }}
           />
+        
 
       </View>
+      <CustomModal
+        style={{margin:0,justifyContent:'flex-end'}}
+        isVisible={changePasswordModal}
+        avoidKeyboard
+        onBackdropPress={()=>setChangePasswordModal(false)}
+        >
+      
+          <View style={[styles.modalView,{backgroundColor:isDark?colors.theme:colors.themeLight}]}>
+          <View style={{gap:verticalScale(10),marginBottom:verticalScale(15)}}>
+
+          <CustomTextInput onChangeText={setPassword} placeholder={strings.OLD_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
+        <CustomTextInput onChangeText={setPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
+          </View>
+
+          <CustomButton title={strings.CHANGE_PASSWORD} onPress={()=>{}}/>
+          </View>
+        </CustomModal>
     </WrapperComponent>
   );
 };

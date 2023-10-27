@@ -18,5 +18,11 @@ export const styles = StyleSheet.create({
         gap:verticalScale(20),
         marginHorizontal:moderateScale(20)
     },
+    modalView: {
+        borderTopLeftRadius: moderateScale(20),
+        borderTopRightRadius: moderateScale(20),
+        padding: moderateScale(20),
+        width:'100%',
+    },
 
 })

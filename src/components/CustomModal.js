@@ -5,13 +5,15 @@ import ReactNativeModal from 'react-native-modal'
 const CustomModal = ({children,
     isVisible=false,
     onBackdropPress=()=>{},
-    style={}
+    style={},
+    ...props
     }) => {
   return (
     <ReactNativeModal
         isVisible={isVisible}
         onBackdropPress={onBackdropPress}
         style={{...styles.style,...style}}
+        {...props}
     >
         {children}
     </ReactNativeModal>

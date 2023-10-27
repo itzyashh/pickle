@@ -43,4 +43,5 @@ export default {
     BIO:'Bio',
     CHANGE_PASSWORD:'Change Password',
     ADD_LINKS:'Add Links',
+    OLD_PASSWORD:'Old Password',
 }

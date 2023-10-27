@@ -20,6 +20,7 @@ const Login = ({navigation}) => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword,setConfirmPassword] = useState('');
 
   const handleSignUp = () => {
     Keyboard.dismiss();
@@ -39,7 +40,7 @@ const Login = ({navigation}) => {
         <CustomTextInput onChangeText={setFullname} placeholder={strings.FULLNAME}/>
         <CustomTextInput onChangeText={setEmail} placeholder={strings.EMAIL}/>
         <CustomTextInput onChangeText={setPassword} placeholder={strings.PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
-        <CustomTextInput onChangeText={setPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
+        <CustomTextInput onChangeText={setConfirmPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
       </View>
       <Text style={[styles.forgot,!isDark&&{color:'#292929'}]}>{strings.FORGOT_PASSWORD}</Text>
       </View>

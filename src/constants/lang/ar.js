@@ -41,5 +41,6 @@ export default {
     SAVE: 'حفظ',
     BIO: 'نبذة',
     CHANGE_PASSWORD: 'تغيير كلمة المرور',
-    ADD_LINKS: 'إضافة روابط',    
+    ADD_LINKS: 'إضافة روابط',
+    OLD_PASSWORD: 'كلمة المرور القديمة',    
 }
