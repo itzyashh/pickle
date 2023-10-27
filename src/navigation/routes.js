@@ -10,4 +10,5 @@ export const routes = {
     otp: 'OtpScreen',
     tabStack: 'TabStack',
     editProfile: 'EditProfile',
+    links: 'Links',
 }

@@ -14,6 +14,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import OtpScreen from '../screens/OtpScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import EditProfile from '../screens/EditProfile';
+import Links from '../screens/Links';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -79,6 +80,7 @@ const MainStack = () => {
     >
     <Stack.Screen name={routes.tabStack} component={TabStack}  />
     <Stack.Screen name={routes.editProfile} component={EditProfile} />
+    <Stack.Screen name={routes.links} component={Links} />
     </Stack.Navigator>
   );
 };

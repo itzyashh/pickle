@@ -15,8 +15,9 @@ import MultiLineTextInput from '../components/MultiLineTextInput';
 import CustomButton from '../components/CustomButton';
 import ReactNativeModal from 'react-native-modal';
 import CustomModal from '../components/CustomModal';
+import { routes } from '../navigation/routes';
 
-const EditProfile = () => {
+const EditProfile = ({navigation}) => {
   const {isDark, language} = useSelector(state => state?.appSettings);
 
   const [userName, setUserName] = React.useState('');
@@ -25,7 +26,6 @@ const EditProfile = () => {
   const [password, setPassword] = React.useState('');
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
   const [changePasswordModal, setChangePasswordModal] = React.useState(false);
-  const [addLinksModal, setAddLinksModal] = React.useState(false);
 
 
 
@@ -85,7 +85,7 @@ const EditProfile = () => {
           />
         <CustomButton
           title={strings.ADD_LINKS}
-          onPress={() => setAddLinksModal(true)}
+          onPress={()=>navigation.navigate(routes.links)}
           containerStyle={{backgroundColor:' transparent ',
           borderWidth:1,
           borderColor:isDark?colors.white:colors.black,
@@ -100,24 +100,6 @@ const EditProfile = () => {
         avoidKeyboard
         onBackdropPress={()=>setChangePasswordModal(false)}
         key={'1'}
-        >
-      
-          <View style={[styles.modalView,{backgroundColor:isDark?colors.theme:colors.themeLight}]}>
-          <View style={{gap:verticalScale(10),marginBottom:verticalScale(15)}}>
-
-          <CustomTextInput onChangeText={setPassword} placeholder={strings.OLD_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
-        <CustomTextInput onChangeText={setPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
-          </View>
-
-          <CustomButton title={strings.CHANGE_PASSWORD} onPress={()=>{}}/>
-          </View>
-        </CustomModal>
-      <CustomModal
-        style={{margin:0,justifyContent:'flex-end'}}
-        isVisible={addLinksModal}
-        avoidKeyboard
-        onBackdropPress={()=>setAddLinksModal(false)}
-        key={'2'}
         >
       
           <View style={[styles.modalView,{backgroundColor:isDark?colors.theme:colors.themeLight}]}>
