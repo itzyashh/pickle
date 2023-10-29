@@ -47,4 +47,5 @@ export default {
     ADD_LINKS:'Add Links',
     ADD_URL:'Add URL',
     TITLE:'Title',
+    CREATE_POST:'Create Post',
 }

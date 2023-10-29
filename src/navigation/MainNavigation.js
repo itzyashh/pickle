@@ -15,6 +15,8 @@ import OtpScreen from '../screens/OtpScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import EditProfile from '../screens/EditProfile';
 import Links from '../screens/Links';
+import { useSelector } from 'react-redux';
+import colors from '../constants/colors';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -33,12 +35,16 @@ const AuthStack = () => {
 };
 
 const TabStack = () => {
+  const {isDark,language} = useSelector(state => state?.appSettings)
 
   return (
     <Tab.Navigator
     screenOptions={{
       headerShown: false,
       tabBarShowLabel: false,
+      tabBarStyle: {
+        backgroundColor: isDark ? colors.themeLight : colors.theme,
+      }
     }}>
    <Tab.Screen name={routes.home} component={HomeScreen}
       options={{

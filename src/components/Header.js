@@ -8,7 +8,7 @@ import colors from '../constants/colors'
 import { useSelector } from 'react-redux'
 import fontFamily from '../assets/fonts/fontFamily'
 
-const Header = ({onBackPress,leftText,showTitle,title,rightText,onRightPress}) => {
+const Header = ({onBackPress,leftText,showTitle,title,rightText,onRightPress,backBtnDisabled}) => {
     const {isDark,language} = useSelector(state => state?.appSettings)
 
     const navigation = useNavigation()
@@ -33,9 +33,9 @@ const Header = ({onBackPress,leftText,showTitle,title,rightText,onRightPress}) =
         alignItems:'center',
     }}>
 
-    <TouchableOpacity onPress={handlePress} style={styles.container}>
+  {!backBtnDisabled &&  <TouchableOpacity onPress={handlePress} style={styles.container}>
         <FontAwesomeIcon icon={faCircleChevronLeft} size={moderateScale(30)} color={colors.themeLight} />
-    </TouchableOpacity>
+    </TouchableOpacity>}
     {showTitle && <Text  style={[styles.title,isDark && {color:colors.white}]}>{title}</Text>}
     </View>
     {rightText && <Text style={{
