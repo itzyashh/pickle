@@ -387,6 +387,8 @@ PODS:
   - React-jsinspector (0.72.4)
   - React-logger (0.72.4):
     - glog
+  - react-native-cameraroll (6.0.0):
+    - React-Core
   - react-native-image-picker (5.6.1):
     - React-Core
   - react-native-restart (0.0.27):
@@ -577,6 +579,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -670,6 +673,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-cameraroll:
+    :path: "../node_modules/@react-native-camera-roll/camera-roll"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-restart:
@@ -762,6 +767,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: c7f826e40fa9cab5d37cab6130b1af237332b594
   React-jsinspector: aaed4cf551c4a1c98092436518c2d267b13a673f
   React-logger: da1ebe05ae06eb6db4b162202faeafac4b435e77
+  react-native-cameraroll: 121cab3d7fe2972d9a26ef40558d78d4053356a8
   react-native-image-picker: 5fcac5a5ffcb3737837f0617d43fd767249290de
   react-native-restart: 7595693413fe3ca15893702f2c8306c62a708162
   react-native-safe-area-context: 9697629f7b2cda43cf52169bb7e0767d330648c2

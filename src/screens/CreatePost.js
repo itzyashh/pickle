@@ -7,7 +7,7 @@ import strings from '../constants/lang'
 const CreatePost = () => {
   return (
     <WrapperComponent>
-      <Header backBtnDisabled showTitle title={strings.CREATE_POST}  />
+      <Header backBtnDisabled showTitle title={strings.CREATE_POST} rightText={'Save'}  />
     </WrapperComponent>
   )
 }
