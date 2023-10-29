@@ -13,10 +13,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2CFF5CFD3C2A4DF2A4B47903 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A9874E25B3E402FB1E403BE /* Barlow-SemiBold.ttf */; };
 		2D207F7B36BE4FE9B146DA70 /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B215706566040F2B8FBABA3 /* Barlow-Medium.ttf */; };
-		45B225D2E8BA491D8414312C /* libPods-pickle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE1FD212495060705BA6F72 /* libPods-pickle.a */; };
-		70F86B66583358405495D309 /* libPods-pickle-pickleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C76A022A40EB31CF6376120 /* libPods-pickle-pickleTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8468305855DB4F9CA17E3D15 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69852F5D753E437EB3C28E59 /* Barlow-Bold.ttf */; };
+		B76E0E1DE9599914AD28D9A9 /* libPods-pickle-pickleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C80F69B6B49E1FEB6797676E /* libPods-pickle-pickleTests.a */; };
+		C0A7FE16F4C1CE912AD0FCC6 /* libPods-pickle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E2D51F0506E847E8D14682 /* libPods-pickle.a */; };
 		D4A689ADABD24BF39F6A55C3 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D534F758B9247ED87A2050B /* Barlow-Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -41,17 +41,17 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = pickle/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = pickle/main.m; sourceTree = "<group>"; };
 		1B215706566040F2B8FBABA3 /* Barlow-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-Medium.ttf"; path = "../src/assets/fonts/Barlow-Medium.ttf"; sourceTree = "<group>"; };
+		42FF3DF50FE39616B5141543 /* Pods-pickle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle.debug.xcconfig"; path = "Target Support Files/Pods-pickle/Pods-pickle.debug.xcconfig"; sourceTree = "<group>"; };
+		4B8EFABB8273850D64EA4592 /* Pods-pickle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle.release.xcconfig"; path = "Target Support Files/Pods-pickle/Pods-pickle.release.xcconfig"; sourceTree = "<group>"; };
 		69852F5D753E437EB3C28E59 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-Bold.ttf"; path = "../src/assets/fonts/Barlow-Bold.ttf"; sourceTree = "<group>"; };
 		6A9874E25B3E402FB1E403BE /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-SemiBold.ttf"; path = "../src/assets/fonts/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
-		6C76A022A40EB31CF6376120 /* libPods-pickle-pickleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pickle-pickleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80E2D51F0506E847E8D14682 /* libPods-pickle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pickle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = pickle/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D534F758B9247ED87A2050B /* Barlow-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-Regular.ttf"; path = "../src/assets/fonts/Barlow-Regular.ttf"; sourceTree = "<group>"; };
-		AAB7BCEA951A4E68764D8C4D /* Pods-pickle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle.debug.xcconfig"; path = "Target Support Files/Pods-pickle/Pods-pickle.debug.xcconfig"; sourceTree = "<group>"; };
-		C3090B8A50270321616382B4 /* Pods-pickle-pickleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle-pickleTests.release.xcconfig"; path = "Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests.release.xcconfig"; sourceTree = "<group>"; };
-		CD852C15D59E93EDE37BEE51 /* Pods-pickle-pickleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle-pickleTests.debug.xcconfig"; path = "Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E297943403B69450F7912E08 /* Pods-pickle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle.release.xcconfig"; path = "Target Support Files/Pods-pickle/Pods-pickle.release.xcconfig"; sourceTree = "<group>"; };
+		C80F69B6B49E1FEB6797676E /* libPods-pickle-pickleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pickle-pickleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A2DE401C0E547C7A45ADFD /* Pods-pickle-pickleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle-pickleTests.debug.xcconfig"; path = "Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FFE1FD212495060705BA6F72 /* libPods-pickle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pickle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F05E9F64DC25EC0DE7059268 /* Pods-pickle-pickleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pickle-pickleTests.release.xcconfig"; path = "Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70F86B66583358405495D309 /* libPods-pickle-pickleTests.a in Frameworks */,
+				B76E0E1DE9599914AD28D9A9 /* libPods-pickle-pickleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B225D2E8BA491D8414312C /* libPods-pickle.a in Frameworks */,
+				C0A7FE16F4C1CE912AD0FCC6 /* libPods-pickle.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				FFE1FD212495060705BA6F72 /* libPods-pickle.a */,
-				6C76A022A40EB31CF6376120 /* libPods-pickle-pickleTests.a */,
+				80E2D51F0506E847E8D14682 /* libPods-pickle.a */,
+				C80F69B6B49E1FEB6797676E /* libPods-pickle-pickleTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -161,10 +161,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AAB7BCEA951A4E68764D8C4D /* Pods-pickle.debug.xcconfig */,
-				E297943403B69450F7912E08 /* Pods-pickle.release.xcconfig */,
-				CD852C15D59E93EDE37BEE51 /* Pods-pickle-pickleTests.debug.xcconfig */,
-				C3090B8A50270321616382B4 /* Pods-pickle-pickleTests.release.xcconfig */,
+				42FF3DF50FE39616B5141543 /* Pods-pickle.debug.xcconfig */,
+				4B8EFABB8273850D64EA4592 /* Pods-pickle.release.xcconfig */,
+				D0A2DE401C0E547C7A45ADFD /* Pods-pickle-pickleTests.debug.xcconfig */,
+				F05E9F64DC25EC0DE7059268 /* Pods-pickle-pickleTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -176,12 +176,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "pickleTests" */;
 			buildPhases = (
-				BB36BF5BDF5501A6AA614BCF /* [CP] Check Pods Manifest.lock */,
+				EBC3A78CDED9A6FDE3E4600B /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6B8EA131699D46D7A70BC834 /* [CP] Embed Pods Frameworks */,
-				E5BF81EE73E814A48DEBA749 /* [CP] Copy Pods Resources */,
+				D6ABC9402DB039BCAB0B7A20 /* [CP] Embed Pods Frameworks */,
+				C5BA5B3E82F41626881FD0F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,14 +197,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "pickle" */;
 			buildPhases = (
-				5F3C3BE02184CFB97FA5B4F9 /* [CP] Check Pods Manifest.lock */,
+				E5266998E9C9B0C926E432DE /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				BDB3AFCBA477E096005B5839 /* [CP] Embed Pods Frameworks */,
-				983E45FBFDCF720BBF70E289 /* [CP] Copy Pods Resources */,
+				EA4310DBF072F8350DC7F5AA /* [CP] Embed Pods Frameworks */,
+				66DBE76771DF80CE94C1BBDD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,7 +291,58 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		5F3C3BE02184CFB97FA5B4F9 /* [CP] Check Pods Manifest.lock */ = {
+		66DBE76771DF80CE94C1BBDD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5BA5B3E82F41626881FD0F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6ABC9402DB039BCAB0B7A20 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5266998E9C9B0C926E432DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -313,41 +364,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6B8EA131699D46D7A70BC834 /* [CP] Embed Pods Frameworks */ = {
+		EA4310DBF072F8350DC7F5AA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		983E45FBFDCF720BBF70E289 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BB36BF5BDF5501A6AA614BCF /* [CP] Check Pods Manifest.lock */ = {
+		EBC3A78CDED9A6FDE3E4600B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,40 +401,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BDB3AFCBA477E096005B5839 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle/Pods-pickle-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5BF81EE73E814A48DEBA749 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pickle-pickleTests/Pods-pickle-pickleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -455,7 +455,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD852C15D59E93EDE37BEE51 /* Pods-pickle-pickleTests.debug.xcconfig */;
+			baseConfigurationReference = D0A2DE401C0E547C7A45ADFD /* Pods-pickle-pickleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -482,7 +482,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3090B8A50270321616382B4 /* Pods-pickle-pickleTests.release.xcconfig */;
+			baseConfigurationReference = F05E9F64DC25EC0DE7059268 /* Pods-pickle-pickleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -506,7 +506,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAB7BCEA951A4E68764D8C4D /* Pods-pickle.debug.xcconfig */;
+			baseConfigurationReference = 42FF3DF50FE39616B5141543 /* Pods-pickle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -533,7 +533,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E297943403B69450F7912E08 /* Pods-pickle.release.xcconfig */;
+			baseConfigurationReference = 4B8EFABB8273850D64EA4592 /* Pods-pickle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -42,5 +42,9 @@ export default {
     BIO: 'نبذة',
     CHANGE_PASSWORD: 'تغيير كلمة المرور',
     ADD_LINKS: 'إضافة روابط',
-    OLD_PASSWORD: 'كلمة المرور القديمة',    
+    OLD_PASSWORD: 'كلمة المرور القديمة',
+    ADD_LINKS: 'إضافة روابط',
+    ADD_URL: 'إضافة رابط',
+    TITLE: 'العنوان',
+        
 }

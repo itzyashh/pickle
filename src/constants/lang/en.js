@@ -44,4 +44,7 @@ export default {
     CHANGE_PASSWORD:'Change Password',
     ADD_LINKS:'Add Links',
     OLD_PASSWORD:'Old Password',
+    ADD_LINKS:'Add Links',
+    ADD_URL:'Add URL',
+    TITLE:'Title',
 }
