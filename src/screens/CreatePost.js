@@ -102,8 +102,11 @@ const CreatePost = ({navigation}) => {
       height: 400,
       cropping: true,
     }).then(image => {
-      console.log(image);
-    });
+      navigation.navigate(routes.addPost, {selectedImages: [image]});
+    }).catch(err => {
+      console.log(err);
+    }
+    );
   };
 
   const listHeaderComponent = () => {
@@ -196,6 +199,7 @@ const CreatePost = ({navigation}) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}
+        onPress={onCameraPress}
       >
         <FontAwesomeIcon icon={faCamera} size={moderateScale(30)} color={colors.white} />
       </TouchableOpacity>
