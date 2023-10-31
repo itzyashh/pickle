@@ -6,12 +6,15 @@ import strings from '../constants/lang';
 
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import CustomButton from '../components/CustomButton';
+import ImagePicker from 'react-native-image-crop-picker';
 import {FlashList} from '@shopify/flash-list';
 import {height, moderateScale, width} from '../assets/scaling';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { routes } from '../navigation/routes';
+import colors from '../constants/colors';
 
-const CreatePost = () => {
+const CreatePost = ({navigation}) => {
   const [photos, setPhotos] = React.useState(null);
   const [selectedImage, setSelectedImage] = React.useState(null);
   const [selectedImages, setSelectedImages] = React.useState([]);
@@ -89,6 +92,20 @@ const CreatePost = () => {
     getPicture();
   }, []);
 
+  const onNext = () => {
+    navigation.navigate(routes.addPost, {selectedImages});
+  }
+
+  const onCameraPress = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+    });
+  };
+
   const listHeaderComponent = () => {
     if (!photos || photos.length === 0) {
       return null;
@@ -148,6 +165,7 @@ const CreatePost = () => {
         showTitle
         title={strings.CREATE_POST}
         rightText={strings.NEXT}
+        onRightPress={onNext}
       />
       <FlashList
         data={photos}
@@ -166,6 +184,21 @@ const CreatePost = () => {
           paddingHorizontal: moderateScale(10),
         }}
       />
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          bottom: moderateScale(20),
+          right: moderateScale(20),
+          width: moderateScale(60),
+          height: moderateScale(60),
+          borderRadius: moderateScale(30),
+          backgroundColor: colors.button,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <FontAwesomeIcon icon={faCamera} size={moderateScale(30)} color={colors.white} />
+      </TouchableOpacity>
     </WrapperComponent>
   );
 };

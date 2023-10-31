@@ -11,4 +11,5 @@ export const routes = {
     tabStack: 'TabStack',
     editProfile: 'EditProfile',
     links: 'Links',
+    addPost: 'AddPost',
 }
