@@ -61,11 +61,12 @@ const ProfileScreen = ({navigation}) => {
     );
   };
 
-  const renderItem = ({item}) => {
+  const renderItem = ({item,index}) => {
     return (
       <TouchableOpacity style={{borderWidth:1,}}>
 
-      <CustomImage imageStyle={{width:width/3,height:moderateScale(200)}}/>
+      <CustomImage imageStyle={{width:width/3,height:moderateScale(200)}} resizeMode={'cover'}/>
+
   </TouchableOpacity>
     );
   };

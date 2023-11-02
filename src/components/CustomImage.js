@@ -3,7 +3,7 @@ import React from 'react'
 import FastImage from 'react-native-fast-image'
 import { moderateScale } from '../assets/scaling'
 
-const CustomImage = ({source={uri:'https://placehold.co/600x400/png'},type,imageStyle={}}) => {
+const CustomImage = ({source={uri:'https://placehold.co/600x400/png'},type,imageStyle={},resizeMode}) => {
  
     const styleToApply = () => {
         switch (type) {
@@ -28,9 +28,10 @@ const CustomImage = ({source={uri:'https://placehold.co/600x400/png'},type,image
     
 
 
-  }} style={styleToApply()} 
+  }} 
+    resizeMode={resizeMode}
+  style={styleToApply()} 
 
-    resizeMode='cover'
   />
     
 }
