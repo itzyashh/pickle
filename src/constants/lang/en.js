@@ -49,4 +49,5 @@ export default {
     TITLE:'Title',
     CREATE_POST:'Create Post',
     ADD_INFO:'Add Info',
+    ADD_DESCRIPTION:'Add Description',
 }

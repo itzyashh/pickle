@@ -47,5 +47,6 @@ export default {
     ADD_URL: 'إضافة رابط',
     TITLE: 'العنوان',
     CREATE_POST: 'إنشاء منشور',
-    ADD_INFO: 'إضافة معلومات',    
+    ADD_INFO: 'إضافة معلومات',
+    ADD_DESCRIPTION: 'إضافة وصف',    
 }

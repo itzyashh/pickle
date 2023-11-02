@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCamera, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { routes } from '../navigation/routes';
 import colors from '../constants/colors';
+import { showMessage } from 'react-native-flash-message';
 
 const CreatePost = ({navigation}) => {
   const [photos, setPhotos] = React.useState(null);
@@ -128,6 +129,13 @@ const CreatePost = ({navigation}) => {
 
     const onSelect = () => {
       let clonePhotos = [...photos];
+      if (selectedImages.length >= 4 && !clonePhotos[index].node.isSelected) {
+        return showMessage({
+          message: 'You can select maximum 4 images',
+          type: 'danger',
+          icon: 'danger',
+        });
+      }
       clonePhotos[index].node.isSelected = !clonePhotos[index].node.isSelected;
       setPhotos(clonePhotos);
       setSelectedImage(clonePhotos[index].node.image.uri);
@@ -150,7 +158,7 @@ const CreatePost = ({navigation}) => {
         <FontAwesomeIcon
           icon={faCircleCheck}
           size={moderateScale(20)}
-          color={'#fff'}
+          color={colors.button}
           style={{
             position: 'absolute',
             top: moderateScale(5),
