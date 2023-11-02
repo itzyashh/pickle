@@ -1,9 +1,16 @@
-import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import React from 'react';
 import WrapperComponent from '../components/WrapperComponent';
 import Header from '../components/Header';
 import strings from '../constants/lang';
-import {moderateScale, width} from '../assets/scaling';
+import {moderateScale, verticalScale, width} from '../assets/scaling';
 import colors from '../constants/colors';
 import {useSelector} from 'react-redux';
 import ImageCropPicker from 'react-native-image-crop-picker';
@@ -15,6 +22,7 @@ import {
   faCross,
 } from '@fortawesome/free-solid-svg-icons';
 import MultiLineTextInput from '../components/MultiLineTextInput';
+import CustomButton from '../components/CustomButton';
 
 const AddPost = ({navigation, route}) => {
   const {isDark, language} = useSelector(state => state?.appSettings);
@@ -100,39 +108,55 @@ const AddPost = ({navigation, route}) => {
   return (
     <WrapperComponent>
       <Header showTitle title={strings.ADD_INFO} />
-      <View style={{padding: moderateScale(16)}}>
-        <FlatList
-          data={images}
-          renderItem={renderItem}
-          horizontal
-          contentContainerStyle={{padding: moderateScale(5)}}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-          ListFooterComponent={
-            <TouchableOpacity
-              onPress={onPlus}
-              style={{
-                width: width / 4,
-                height: width / 4,
-                borderRadius: moderateScale(10),
-                backgroundColor: colors.gray,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text
+      <View style={styles.container}>
+        <View>
+          <FlatList
+            data={images}
+            renderItem={renderItem}
+            horizontal
+            contentContainerStyle={{padding: moderateScale(5)}}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            ListFooterComponent={
+              <TouchableOpacity
+                onPress={onPlus}
                 style={{
-                  fontSize: moderateScale(30),
-                  color: isDark ? colors.white : colors.black,
+                  width: width / 4,
+                  height: width / 4,
+                  borderRadius: moderateScale(10),
+                  backgroundColor: colors.gray,
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}>
-                +
-              </Text>
-            </TouchableOpacity>
-          }
-        />
-        <MultiLineTextInput multiline placeholder={strings.ADD_DESCRIPTION} />
+                <Text
+                  style={{
+                    fontSize: moderateScale(30),
+                    color: isDark ? colors.white : colors.black,
+                  }}>
+                  +
+                </Text>
+              </TouchableOpacity>
+            }
+          />
+          <View style={{marginTop: verticalScale(20)}}>
+            <MultiLineTextInput
+              multiline
+              placeholder={strings.ADD_DESCRIPTION}
+            />
+          </View>
+        </View>
+          <CustomButton title={strings.NEXT} primary />
       </View>
     </WrapperComponent>
   );
 };
 
 export default AddPost;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: moderateScale(16),
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+});

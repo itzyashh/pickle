@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
         backgroundColor:colors.themeLight,
         justifyContent:'center',
         paddingHorizontal:moderateScale(16),
-        flexDirection:'row',
-
+        flexDirection:'row'
         }
         ,
     textInput: {
