@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
     container: {
         minHeight:moderateScale(52),
         maxHeight:moderateScale(150),
+        height:moderateScale(100),
         borderRadius:moderateScale(8),
         paddingVertical:moderateScale(8),
         backgroundColor:colors.themeLight,
         justifyContent:'center',
         paddingHorizontal:moderateScale(16),
         flexDirection:'row',
-        alignItems:'center',
 
         }
         ,
