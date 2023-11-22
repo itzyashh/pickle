@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import colors from '../constants/colors'
 import fontFamily from '../assets/fonts/fontFamily'
@@ -10,7 +10,10 @@ import { useSelector } from 'react-redux'
 
 const {width} = Dimensions.get('window')
 
-const CustomButton = ({title='Button',onPress=()=>{},primary,icon,fontSize,containerStyle}) => {
+const CustomButton = ({title='Button',onPress=()=>{},primary,icon,fontSize,containerStyle,
+isLoading=false
+
+}) => {
   const isDark = useSelector(state => state?.appSettings?.isDark)
   console.log('primary',primary);
   
@@ -33,7 +36,8 @@ const CustomButton = ({title='Button',onPress=()=>{},primary,icon,fontSize,conta
   return (
     <TouchableOpacity onPress={onPress} style={[styles.container,!primary && {backgroundColor:colors.themeLight},containerStyle]} >
 {icon &&    <FontAwesomeIcon icon={iconToApply(icon)} size={moderateScale(20)} color={isDark?colors.white:colors.C183D3D} />}
-        <Text style={[styles.text,fontSize&&{fontSize:fontSize},!isDark&&{color:'#292929'}]}>{title}</Text>
+{isLoading ? <ActivityIndicator color={colors.white} /> :      <Text style={[styles.text,fontSize&&{fontSize:fontSize},!isDark&&{color:'#292929'}]}>{title}</Text>}
+   
     </TouchableOpacity>
   )
 }

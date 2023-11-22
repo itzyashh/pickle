@@ -11,6 +11,9 @@ import Header from '../components/Header';
 import { useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { routes } from '../navigation/routes';
+import validation from '../utils/validation';
+import { showError } from '../utils/helper';
+import axios from 'axios';
 
 const Login = ({navigation}) => {
   const isDark = useSelector(state => state?.appSettings?.isDark)
@@ -21,10 +24,48 @@ const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
+  const [isLoading,setIsLoading] = useState(false)
 
-  const handleSignUp = () => {
+  const isValid = () => {
+    const error = validation({
+      email,
+      password,
+      username,
+      fullname
+    })
+    if(error){
+      showError(error)
+      return
+    }
+    return true
+  }
+
+  const handleSignUp = async () => {
     Keyboard.dismiss();
-    navigation.navigate(routes.otp);
+
+
+    if(isValid()){
+      setIsLoading(true)
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/user/signup',
+        data: {
+          fullName:fullname,
+          email,
+          password,
+          userName:username
+        }
+      }).then((res) => {
+        console.log('res++',res);
+        setIsLoading(false)
+        navigation.navigate(routes.otp,res.data.result)
+      }).catch((error) => {
+        setIsLoading(false)
+        console.log(error)
+        showError(error?.response?.data?.message)
+      })
+    }
+    
   }
 
   return (
@@ -36,9 +77,9 @@ const Login = ({navigation}) => {
 
       <Text style={styles.content} >{strings.WE_ARE_HAPPY_TO_SEE_LOGIN}</Text>
       <View style={{gap:moderateScale(16)}}>
-        <CustomTextInput onChangeText={setUsername} placeholder={strings.USERNAME}/>
-        <CustomTextInput onChangeText={setFullname} placeholder={strings.FULLNAME}/>
-        <CustomTextInput onChangeText={setEmail} placeholder={strings.EMAIL}/>
+        <CustomTextInput autoCorrect={false} autoCapitalize='none' onChangeText={setUsername} placeholder={strings.USERNAME}/>
+        <CustomTextInput autoCapitalize='words' autoCorrect={false} onChangeText={setFullname} placeholder={strings.FULLNAME}/>
+        <CustomTextInput autoCapitalize='none' onChangeText={setEmail} placeholder={strings.EMAIL}/>
         <CustomTextInput onChangeText={setPassword} placeholder={strings.PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
         <CustomTextInput onChangeText={setConfirmPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
       </View>
@@ -52,7 +93,7 @@ const Login = ({navigation}) => {
             }}
       >
 
-      <CustomButton onPress={handleSignUp} primary fontSize={moderateScale(16)}  title={strings.SIGN_UP} />
+      <CustomButton isLoading={isLoading} onPress={handleSignUp} primary fontSize={moderateScale(16)}  title={strings.SIGN_UP} />
       </View>
     </KeyboardAwareScrollView>
     </WrapperComponent>

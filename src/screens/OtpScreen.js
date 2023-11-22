@@ -10,8 +10,11 @@ import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
 import { useSelector } from 'react-redux';
 import OTPTextView from 'react-native-otp-textinput';
+import { useRoute } from '@react-navigation/native';
 const Login = () => {
-
+  const route = useRoute()
+  const data = route?.params
+  console.log('data',data);
   const isDark = useSelector(state => state?.appSettings?.isDark)
 
 
