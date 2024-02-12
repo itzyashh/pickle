@@ -48,5 +48,6 @@ export default {
     TITLE: 'العنوان',
     CREATE_POST: 'إنشاء منشور',
     ADD_INFO: 'إضافة معلومات',
-    ADD_DESCRIPTION: 'إضافة وصف',    
+    ADD_DESCRIPTION: 'إضافة وصف', 
+    PASSWORD_NOT_MATCH: 'كلمة المرور غير متطابقة',   
 }

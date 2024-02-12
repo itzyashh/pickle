@@ -50,4 +50,5 @@ export default {
     CREATE_POST:'Create Post',
     ADD_INFO:'Add Info',
     ADD_DESCRIPTION:'Add Description',
+    PASSWORD_NOT_MATCH:'Password does not match',
 }

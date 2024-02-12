@@ -16,7 +16,7 @@ const Login = () => {
   const data = route?.params
   console.log('data',data);
   const isDark = useSelector(state => state?.appSettings?.isDark)
-
+  const email = useRoute().params?.email;
 
   const [otpInput, setOtpInput] = useState('');
 

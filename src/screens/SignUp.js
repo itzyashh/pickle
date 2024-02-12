@@ -37,6 +37,10 @@ const Login = ({navigation}) => {
       showError(error)
       return
     }
+    if(password!==confirmPassword){
+      showError(strings.PASSWORD_NOT_MATCH)
+      return
+    }
     return true
   }
 
@@ -58,11 +62,11 @@ const Login = ({navigation}) => {
       }).then((res) => {
         console.log('res++',res);
         setIsLoading(false)
-        navigation.navigate(routes.otp,res.data.result)
+        navigation.navigate(routes.otp,res.data.result, email)
       }).catch((error) => {
         setIsLoading(false)
         console.log(error)
-        showError(error?.response?.data?.message)
+        showError(error?.response?.data?.message ?? error?.message)
       })
     }
     
@@ -82,6 +86,8 @@ const Login = ({navigation}) => {
         <CustomTextInput autoCapitalize='none' onChangeText={setEmail} placeholder={strings.EMAIL}/>
         <CustomTextInput onChangeText={setPassword} placeholder={strings.PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
         <CustomTextInput onChangeText={setConfirmPassword} placeholder={strings.CONFIRM_PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
+        <Text style={{color:'red'}}>{password!==confirmPassword && confirmPassword.length>0
+        ?strings.PASSWORD_NOT_MATCH:''}</Text>
       </View>
       <Text style={[styles.forgot,!isDark&&{color:'#292929'}]}>{strings.FORGOT_PASSWORD}</Text>
       </View>

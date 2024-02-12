@@ -36,11 +36,11 @@ const RootNavigation = () => {
    
 
     const userData = useSelector(state => state.auth);
-    console.log(userData);
+    console.log('asdasdasdadasd',userData?.userData?.token)
 
-    const isLoggedIn = userData.isLogged
+    const isLoggedIn = userData.userData?.token
     // const isLoggedIn = true
-    return isLoggedIn ? <MainStack /> : <AuthStack />;
+    return !!isLoggedIn ? <MainStack /> : <AuthStack />;
 }
 
 export default RootNavigation;

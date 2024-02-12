@@ -8,16 +8,19 @@ import colors from '../constants/colors';
 import fontFamily from '../assets/fonts/fontFamily';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import validation from '../utils/validation';
 import { showError } from '../utils/helper';
+import LocalHost from '../api/LocalHost';
+import { setUserData } from '../redux/reducers/auth';
 
 const Login = () => {
   const isDark = useSelector(state => state?.appSettings?.isDark)
-
+  const dispatch = useDispatch()
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   console.log('secureTextEntry', secureTextEntry);
 
   const isValid = () => {
@@ -29,9 +32,25 @@ const Login = () => {
     return true
   }
 
-  const onSubmit = () => {
-    isValid()&&console.log('onSubmit');
+  const onSubmit = async () => {
+    setIsLoading(true)
+    const isValidated = isValid()
+    if(isValidated){
+      try {
+        const response = await LocalHost.post('/user/login',{
+          email,
+          password
+        })
+        setIsLoading(false)
+        console.log('response',response.data);
+        dispatch(setUserData(response.data))      
+      } catch (error) {
+        console.log('error',error);
+        showError(error)
+        setIsLoading(false)
+      }
    }
+  }
 
   return (
     <WrapperComponent>
@@ -42,7 +61,9 @@ const Login = () => {
       <Text style={styles.content} >{strings.WE_ARE_HAPPY_TO_SEE_LOGIN}</Text>
       <View style={{gap:moderateScale(16)}}>
 
-        <CustomTextInput onChangeText={setEmail} placeholder={strings.EMAIL}/>
+        <CustomTextInput
+         autoCapitalize='none'
+         onChangeText={setEmail} placeholder={strings.EMAIL}/>
         <CustomTextInput onChangeText={setPassword} placeholder={strings.PASSWORD} secureTextEntry={secureTextEntry} toggleButton onTogglePress={()=>setSecureTextEntry(!secureTextEntry)} />
       </View>
       <Text style={styles.forgot}>{strings.FORGOT_PASSWORD}</Text>
@@ -56,7 +77,9 @@ const Login = () => {
             }}
       >
 
-      <CustomButton fontSize={moderateScale(16)} onPress={onSubmit} title={strings.LOGIN} />
+      <CustomButton
+      isLoading={isLoading}
+       fontSize={moderateScale(16)} onPress={onSubmit} title={strings.LOGIN} />
       </KeyboardAvoidingView>
     </Pressable>
     </WrapperComponent>

@@ -2,7 +2,6 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
     userData: {},
-    isLogged: false,
 }
 
 const AuthSlice = createSlice({
@@ -10,7 +9,7 @@ const AuthSlice = createSlice({
     initialState,
     reducers: {
         setUserData: (state, action) => {
-            state.isLogged = action.payload
+            state.userData = action.payload
         },
         resetUserData: (state) => {
             state.userData = {}

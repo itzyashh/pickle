@@ -24,9 +24,9 @@ import { storeData } from '../utils/helper';
   const {isDark,language} = useSelector(state => state?.appSettings)
   const [isVisible, setIsVisible] = useState(false);
   console.log('language',language)
-  const onLogin = () => {
-    dispatch(setUserData({isLogged: true}));
-  };
+  // const onLogin = () => {
+  //   dispatch(setUserData({isLogged: true}));
+  // };
 
   const onLanguageIconPress = () => {
     setIsVisible(true)
