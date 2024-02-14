@@ -1,22 +1,29 @@
-import {Dimensions, StyleSheet, Text, Touchable, TouchableOpacity, View} from 'react-native';
+import {Button, Dimensions, StyleSheet, Text, Touchable, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import WrapperComponent from '../components/WrapperComponent';
 import CustomImage from '../components/CustomImage';
 import {styles} from './styles/ProfileStyle';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import colors from '../constants/colors';
 import {moderateScale, verticalScale} from '../assets/scaling';
 import {FlashList} from '@shopify/flash-list';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { routes } from '../navigation/routes';
+import { setUserData } from '../redux/reducers/auth';
 
 const ProfileScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   const onEdit = () => {
     navigation.navigate(routes.editProfile)
   }
   const {isDark, language} = useSelector(state => state?.appSettings);
   const {width, height} = Dimensions.get('window');
+
+  const onLogout = () => {
+    dispatch(setUserData({}))
+  };
+
   const listHeader = () => {
     return (
       <View style={{marginBottom:verticalScale(16)}}>
@@ -46,6 +53,7 @@ const ProfileScreen = ({navigation}) => {
           <TouchableOpacity onPress={onEdit}>
           <FontAwesomeIcon icon={faPenToSquare} size={moderateScale(20)} color={isDark?colors.white:colors.black} />
           </TouchableOpacity>
+          <Button title={'Logout'} onPress={onLogout} />
         </View>
         <Text
           style={[styles.bio, {color: isDark ? colors.white : colors.black}]}>

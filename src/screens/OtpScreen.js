@@ -11,6 +11,8 @@ import Header from '../components/Header';
 import { useSelector } from 'react-redux';
 import OTPTextView from 'react-native-otp-textinput';
 import { useRoute } from '@react-navigation/native';
+import LocalHost from '../api/LocalHost';
+import { showError } from '../utils/helper';
 const Login = () => {
   const route = useRoute()
   const data = route?.params
@@ -39,6 +41,23 @@ const Login = () => {
         console.log('OnResend');
         setTimer(59);
     }
+
+  const onSubmit = async () => {
+    try {
+
+      const response = await  LocalHost.post('/user/otp-verify',{
+        email,
+        otp:otpInput
+      })
+      console.log('response',response.data);
+
+      
+    } catch (error) {
+      console.log('error',error);
+      showError(error.message ?? error)
+    }
+  }
+
   
   console.log('otpInput', otpInput);
   return (
@@ -76,7 +95,7 @@ const Login = () => {
             }}
       >
 
-      <CustomButton fontSize={moderateScale(16)} title={strings.SUBMIT} />
+      <CustomButton onPress={onSubmit} fontSize={moderateScale(16)} title={strings.SUBMIT} />
       </KeyboardAvoidingView>
     </Pressable>
     </WrapperComponent>
