@@ -8,17 +8,23 @@ import colors from '../constants/colors';
 import fontFamily from '../assets/fonts/fontFamily';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OTPTextView from 'react-native-otp-textinput';
 import { useRoute } from '@react-navigation/native';
 import LocalHost from '../api/LocalHost';
 import { showError } from '../utils/helper';
+import { setUserData } from '../redux/reducers/auth';
+import validation from '../utils/validation';
 const Login = () => {
   const route = useRoute()
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
   const data = route?.params
   console.log('data',data);
   const isDark = useSelector(state => state?.appSettings?.isDark)
   const email = useRoute().params?.email;
+  console.log('email',email);
+ 
 
   const [otpInput, setOtpInput] = useState('');
 
@@ -28,6 +34,16 @@ const Login = () => {
       setTimer(timer - 1);
     }
   }, [timer]);
+
+  const validateOTP = () => {
+const result = validation({otp:otpInput})
+console.log('result',result);
+if(result){
+  showError(result)
+  return
+}
+return true
+  }
 
   useEffect(() => {
     const timeOut = setTimeout(timerCallback, 1000)
@@ -43,18 +59,25 @@ const Login = () => {
     }
 
   const onSubmit = async () => {
+    const isValidated = validateOTP()
+    console.log('isValidated',isValidated);
+    if(!isValidated){
+      return
+    }
+
+    setLoading(true)
     try {
 
       const response = await  LocalHost.post('/user/otp-verify',{
         email,
         otp:otpInput
       })
-      console.log('response',response.data);
-
-      
+      setLoading(false)
+      dispatch(setUserData(data))
     } catch (error) {
-      console.log('error',error);
-      showError(error.message ?? error)
+      console.log('otp api error',error);
+      showError(error?.response?.data?.message ?? error.message ?? 'Something went wrong')
+      setLoading(false)
     }
   }
 
@@ -95,7 +118,9 @@ const Login = () => {
             }}
       >
 
-      <CustomButton onPress={onSubmit} fontSize={moderateScale(16)} title={strings.SUBMIT} />
+      <CustomButton
+        isLoading={loading}
+       onPress={onSubmit} fontSize={moderateScale(16)} title={strings.SUBMIT} />
       </KeyboardAvoidingView>
     </Pressable>
     </WrapperComponent>

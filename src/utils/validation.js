@@ -18,7 +18,8 @@ export default function (data) {
     const { email,
         password,
         username,
-        fullname
+        fullname,
+        otp
     } = data
     if (username !== undefined) {
         let emptyValidation = checkEmpty(username, 'Username')
@@ -60,6 +61,13 @@ export default function (data) {
         let minLengthValidation = checkMinLength(password, 'Password', 6)
         if (minLengthValidation) {
             return minLengthValidation
+        }
+    }
+
+    if (otp !== undefined) {
+        let emptyValidation = checkEmpty(otp, 'OTP')
+        if (emptyValidation) {
+            return emptyValidation
         }
     }
 

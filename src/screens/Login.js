@@ -13,8 +13,9 @@ import validation from '../utils/validation';
 import { showError } from '../utils/helper';
 import LocalHost from '../api/LocalHost';
 import { setUserData } from '../redux/reducers/auth';
+import { routes } from '../navigation/routes';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const isDark = useSelector(state => state?.appSettings?.isDark)
   const dispatch = useDispatch()
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -33,20 +34,25 @@ const Login = () => {
   }
 
   const onSubmit = async () => {
-    setIsLoading(true)
+    console.log('Login api call');
     const isValidated = isValid()
     if(isValidated){
+      setIsLoading(true)
       try {
         const response = await LocalHost.post('/user/login',{
           email,
           password
         })
         setIsLoading(false)
-        console.log('response',response.data);
-        dispatch(setUserData(response.data))      
+        console.log('Login response',response.data);
+        if (response?.data?.validOTP) {
+          dispatch(setUserData(response.data))      
+        }else{
+          navigation.navigate(routes.otp,{...response.data})
+        }
       } catch (error) {
         console.log('error',error);
-        showError(error)
+        showError(error.response?.data?.message ?? error.message)
         setIsLoading(false)
       }
    }
