@@ -66,6 +66,17 @@ const AddPost = ({navigation, route}) => {
     setImages(cloneImages);
   };
 
+  const onNext = () => {
+    if (images.length === 0) {
+      return showMessage({
+        message: 'Please select at least one image',
+        type: 'danger',
+        icon: 'danger',
+      });
+    }
+    console.log('images', images);
+  }
+
   const renderItem = ({item, index}) => {
     // const onSelect = () => {
     //   let clonePhotos = [...photos];
@@ -145,7 +156,9 @@ const AddPost = ({navigation, route}) => {
             />
           </View>
         </View>
-          <CustomButton title={strings.NEXT} primary />
+          <CustomButton
+            onPress={onNext}
+           title={strings.NEXT} primary />
       </View>
     </WrapperComponent>
   );

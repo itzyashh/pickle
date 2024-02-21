@@ -43,11 +43,11 @@ export default {
     CHANGE_PASSWORD: 'تغيير كلمة المرور',
     ADD_LINKS: 'إضافة روابط',
     OLD_PASSWORD: 'كلمة المرور القديمة',
-    ADD_LINKS: 'إضافة روابط',
     ADD_URL: 'إضافة رابط',
     TITLE: 'العنوان',
     CREATE_POST: 'إنشاء منشور',
     ADD_INFO: 'إضافة معلومات',
     ADD_DESCRIPTION: 'إضافة وصف', 
-    PASSWORD_NOT_MATCH: 'كلمة المرور غير متطابقة',   
+    PASSWORD_NOT_MATCH: 'كلمة المرور غير متطابقة',
+    NO_POSTS: 'لا توجد منشورات',   
 }

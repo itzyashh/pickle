@@ -59,7 +59,8 @@ const TabStack = () => {
        />
     <Tab.Screen name={routes.createPost} component={CreatePost}
       options={{
-          tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faCirclePlus}  color={focused ? 'red' : 'red'} size={20} />
+          tabBarIcon: ({ focused }) => <FontAwesomeIcon icon={faCirclePlus}  color={focused ? 'red' : 'red'} size={20} />,
+          unmountOnBlur: true
       }}
      />
      <Tab.Screen name={routes.notifications} component={NotificationScreen}

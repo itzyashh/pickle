@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useCallback } from 'react'
+import { RefreshControl, StyleSheet, Text, View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
 import strings from '../constants/lang'
 import WrapperComponent from '../components/WrapperComponent'
 import { FlashList } from '@shopify/flash-list'
@@ -10,6 +10,7 @@ import { faEllipsis, faShare } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import colors from '../constants/colors'
 import { moderateScale, verticalScale } from '../assets/scaling'
+import LocalHost from '../api/LocalHost'
 
 const DATA = [
   {
@@ -30,66 +31,102 @@ const DATA = [
 
 const HomeScreen = () => {
 
-  const {isDark,language} = useSelector(state => state?.appSettings)
+  const { isDark, language } = useSelector(state => state?.appSettings)
+  const [refreshing, setRefreshing] = useState(false)
+  const [posts, setPosts] = useState([])
 
-  
-  const renderItem = useCallback( ({ item }) => (
+  useEffect(() => {
+    fetchPosts()
+  }, [])
+
+  const onRefresh = async () => {
+    setRefreshing(true)
+    await fetchPosts()
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1500);
+  }
+
+
+  const fetchPosts = async () => {
+    console.log('fetching posts');
+    try {
+      const response = await LocalHost.get('/post/getPosts', {
+        params: {
+          page: 1,
+          limit: 10
+        }
+      })
+
+      console.log('response', response.data);
+      setPosts(response?.data?.result)
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+
+  const renderItem = useCallback(({ item }) => (
     <View style={styles.box}>
-    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-    <View style={{flexDirection:'row',alignItems:'center',gap:20,}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 20, }}>
 
-        <CustomImage type={'avatar'} source={{uri:'https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?size=626&ext=jpg'}} />
-        <View style={{gap:moderateScale(5)}}>
-        <Text style={[styles.name,isDark&&{color:'#fff'}]}>Maria Ann</Text>
-        <Text style={[styles.location,isDark&&{color:colors.whiteO70}]}>Sector 1, Bucharest</Text>
+          <CustomImage type={'avatar'} source={{ uri: 'https://i.pravatar.cc/300' }} />
+          <View style={{ gap: moderateScale(5) }}>
+            <Text style={[styles.name, isDark && { color: '#fff' }]}>Maria Ann</Text>
+            <Text style={[styles.location, isDark && { color: colors.whiteO70 }]}>Sector 1, Bucharest</Text>
+          </View>
         </View>
-    </View>
-    <FontAwesomeIcon color={isDark?colors.white:colors.black} icon={faEllipsis} size={20} />
-    </View>
-    <View style={styles.postImage}>
-
-    <CustomImage type={'full'} source={{uri:'https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049569.jpg?size=626&ext=jpg'}} />
-    </View>
-    <View style={styles.captionContainer}>
-
-    <Text style={[styles.caption,isDark&&{color:'#fff'}]}>
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. asdsa
-        Donec auctor, nunc vel ultricies rutrum, augue eros ultrices
-
-    </Text>
-    <View style={{
-      justifyContent:'space-between',
-      flexDirection:'row',
-          alignItems:'center',
-          marginTop:verticalScale(10),
-    }}>
-      <View
-        style={{
-          flexDirection:'row',
-          gap:moderateScale(20),
-        }}
-      >
-        <Text style={[styles.likeAndComment,{color:isDark?colors.white:colors.black}]}>{`Comments: ${245}`}</Text>
-        <Text style={[styles.likeAndComment,{color:isDark?colors.white:colors.black}]}>{`Likes: ${20}`}</Text>
+        <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faEllipsis} size={20} />
       </View>
-      <FontAwesomeIcon color={isDark?colors.white:colors.black} icon={faShare} size={20} />
-    </View>
-    </View>
+      <View style={styles.postImage}>
+
+        <CustomImage
+          imageStyle={{ borderRadius: moderateScale(10) }}
+          type={'full'} source={{ uri: 'https://fashionlawjournal.com/wp-content/uploads/2022/08/Pay-difference-between-male-and-female-models.png' }} />
+      </View>
+      <View style={styles.captionContainer}>
+
+        {!!item?.description && <Text style={[styles.caption, isDark && { color: '#fff' }]}>{item?.description}</Text>}
+        <View style={{
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: verticalScale(10),
+        }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: moderateScale(20),
+            }}
+          >
+            <Text style={[styles.likeAndComment, { color: isDark ? colors.white : colors.black }]}>{`Comments: ${item?.commentCount}`}</Text>
+            <Text style={[styles.likeAndComment, { color: isDark ? colors.white : colors.black }]}>{`Likes: ${item?.likeCount}`}</Text>
+          </View>
+          <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faShare} size={20} />
+        </View>
+      </View>
 
     </View>
   )
-  ,[])
+    , [])
 
 
 
   return (
     <WrapperComponent style={styles.container}>
-    <FlashList
-      data={DATA}
-      renderItem={renderItem}
-      estimatedItemSize={500}
-      keyExtractor={item => item.id}
-    />
+      <FlashList
+        data={posts}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+        ListEmptyComponent={<Text>{strings.NO_POSTS}</Text>}
+        renderItem={renderItem}
+        estimatedItemSize={500}
+        keyExtractor={item => item._id}
+      />
     </WrapperComponent>
   )
 }

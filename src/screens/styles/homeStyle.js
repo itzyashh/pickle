@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
         width:'100%',
         height:moderateScaleVertical(400),
         overflow:'hidden',
+        borderRadius:moderateScale(10),
     },
     captionContainer:{
         marginTop:verticalScale(20),

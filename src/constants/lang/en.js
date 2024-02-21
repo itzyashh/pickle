@@ -44,11 +44,11 @@ export default {
     CHANGE_PASSWORD:'Change Password',
     ADD_LINKS:'Add Links',
     OLD_PASSWORD:'Old Password',
-    ADD_LINKS:'Add Links',
     ADD_URL:'Add URL',
     TITLE:'Title',
     CREATE_POST:'Create Post',
     ADD_INFO:'Add Info',
     ADD_DESCRIPTION:'Add Description',
     PASSWORD_NOT_MATCH:'Password does not match',
+    NO_POSTS:'No Posts',
 }
