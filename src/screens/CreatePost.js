@@ -13,7 +13,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCamera, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { routes } from '../navigation/routes';
 import colors from '../constants/colors';
+import RNHeicConverter from 'react-native-heic-converter';
 import { showMessage } from 'react-native-flash-message';
+import LocalHost from '../api/LocalHost';
 
 const CreatePost = ({navigation}) => {
   const [photos, setPhotos] = React.useState(null);
@@ -93,7 +95,33 @@ const CreatePost = ({navigation}) => {
     getPicture();
   }, []);
 
+  const uploadImage = async (formData) => {
+    try {
+      const response = await LocalHost.post('/post/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('response', response.data);
+    } catch (error) {
+      console.log('error at fn', error);
+    }
+  };
   const onNext = () => {
+
+    const singleImage = selectedImages[0]
+
+    const formData = new FormData();
+    formData.append('file', {
+      uri: singleImage.node.image.uri,
+      type: singleImage.node.image.extension,
+      name: singleImage.node.image.filename
+    });
+
+    uploadImage(formData);
+
+    return
+
     navigation.navigate(routes.addPost, {selectedImages});
   }
 

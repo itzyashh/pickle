@@ -1,4 +1,4 @@
-import { RefreshControl, StyleSheet, Text, View } from 'react-native'
+import { RefreshControl,  Text, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import strings from '../constants/lang'
 import WrapperComponent from '../components/WrapperComponent'
@@ -82,7 +82,7 @@ const HomeScreen = () => {
 
         <CustomImage
           imageStyle={{ borderRadius: moderateScale(10) }}
-          type={'full'} source={{ uri: 'https://fashionlawjournal.com/wp-content/uploads/2022/08/Pay-difference-between-male-and-female-models.png' }} />
+          type={'full'} source={{ uri:item.media.location }} />
       </View>
       <View style={styles.captionContainer}>
 

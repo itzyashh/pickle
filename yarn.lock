@@ -6064,6 +6064,11 @@ react-native-flash-message@^0.4.2:
     prop-types "^15.8.1"
     react-native-iphone-screen-helper "^2.0.2"
 
+react-native-heic-converter@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.npmjs.org/react-native-heic-converter/-/react-native-heic-converter-1.3.2.tgz#e6404ffc60d1326f8638980bffb7a9487b7a32f0"
+  integrity sha512-cIzDAfnNEfd8YjqMkjvpe7ODF6kRqNI4jlUhPc0voi0CH/acQbXJqJBU/caYq/uFf5Tmx/GapvYlWvA0mL8xnQ==
+
 react-native-image-crop-picker@^0.40.1:
   version "0.40.1"
   resolved "https://registry.npmjs.org/react-native-image-crop-picker/-/react-native-image-crop-picker-0.40.1.tgz#3b619d7af5f870aa676d7d5b06a276343b817c0f"
