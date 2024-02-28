@@ -23,11 +23,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import MultiLineTextInput from '../components/MultiLineTextInput';
 import CustomButton from '../components/CustomButton';
+import LocalHost from '../api/LocalHost';
 
 const AddPost = ({navigation, route}) => {
   const {isDark, language} = useSelector(state => state?.appSettings);
-
+  const [description, setDescription] = React.useState('');
   const [images, setImages] = React.useState(route.params.selectedImages || []);
+  const user_id = useSelector(state => state.auth.userData._id);
+
 
   const onPlus = () => {
     if (images.length >= 4) {
@@ -66,7 +69,7 @@ const AddPost = ({navigation, route}) => {
     setImages(cloneImages);
   };
 
-  const onNext = () => {
+  const onNext = async () => {
     if (images.length === 0) {
       return showMessage({
         message: 'Please select at least one image',
@@ -74,8 +77,37 @@ const AddPost = ({navigation, route}) => {
         icon: 'danger',
       });
     }
+
+    const formData = new FormData();
+
+    formData.append('user_id', user_id);
+    formData.append('description', description);
+    formData.append('images', images);
+
     console.log('images', images);
+    images.forEach((item, index) => {
+      console.log('item', item?.node?.image?.uri ?? item.path)
+      formData.append('file', {
+        uri:   item?.node?.image?.uri ?? item.path,
+        type: "image/png",
+        name: `image${index}.jpg`,
+      });
+    } );
+
+    console.log('formData', formData);
+    try {
+      const res = await LocalHost.post('/post/createPost', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('res', res.data);
+    } catch (error) {
+      console.log('error at createPost', error);
+    }
   }
+
+
 
   const renderItem = ({item, index}) => {
     // const onSelect = () => {
@@ -129,6 +161,7 @@ const AddPost = ({navigation, route}) => {
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={
+              images.length < 4 && (
               <TouchableOpacity
                 onPress={onPlus}
                 style={{
@@ -147,10 +180,12 @@ const AddPost = ({navigation, route}) => {
                   +
                 </Text>
               </TouchableOpacity>
+            )
             }
           />
           <View style={{marginTop: verticalScale(20)}}>
             <MultiLineTextInput
+              onChangeText={setDescription}
               multiline
               placeholder={strings.ADD_DESCRIPTION}
             />

@@ -54,11 +54,11 @@ const HomeScreen = () => {
       const response = await LocalHost.get('/post/getPosts', {
         params: {
           page: 1,
-          limit: 10
+          limit: 50
         }
       })
 
-      console.log('response', response.data);
+      console.log('response all posts', response.data);
       setPosts(response?.data?.result)
     } catch (error) {
       console.log('error', error);
@@ -82,7 +82,7 @@ const HomeScreen = () => {
 
         <CustomImage
           imageStyle={{ borderRadius: moderateScale(10) }}
-          type={'full'} source={{ uri:item.media.location }} />
+          type={'full'} source={{ uri:item.media[0].url }} />
       </View>
       <View style={styles.captionContainer}>
 

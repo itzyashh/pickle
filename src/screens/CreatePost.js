@@ -108,20 +108,6 @@ const CreatePost = ({navigation}) => {
     }
   };
   const onNext = () => {
-
-    const singleImage = selectedImages[0]
-
-    const formData = new FormData();
-    formData.append('file', {
-      uri: singleImage.node.image.uri,
-      type: singleImage.node.image.extension,
-      name: singleImage.node.image.filename
-    });
-
-    uploadImage(formData);
-
-    return
-
     navigation.navigate(routes.addPost, {selectedImages});
   }
 
