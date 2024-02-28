@@ -134,6 +134,7 @@ const CreatePost = ({navigation}) => {
         style={{
           width: width,
           height: width / 2,
+          marginBottom: moderateScale(10),
         }}
       />
     );
@@ -204,9 +205,9 @@ const CreatePost = ({navigation}) => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
-          paddingBottom: moderateScale(100),
+
           paddingTop: moderateScale(20),
-          paddingHorizontal: moderateScale(10),
+
         }}
       />
       <TouchableOpacity
