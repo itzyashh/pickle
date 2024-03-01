@@ -12,4 +12,5 @@ export const routes = {
     editProfile: 'EditProfile',
     links: 'Links',
     addPost: 'AddPost',
+    postDetails: 'PostDetails',
 }

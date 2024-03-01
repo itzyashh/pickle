@@ -1,4 +1,4 @@
-import { RefreshControl,  Text, View } from 'react-native'
+import { Pressable, RefreshControl,  Text, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import strings from '../constants/lang'
 import WrapperComponent from '../components/WrapperComponent'
@@ -11,6 +11,9 @@ import { useSelector } from 'react-redux'
 import colors from '../constants/colors'
 import { moderateScale, verticalScale } from '../assets/scaling'
 import LocalHost from '../api/LocalHost'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
+import { routes } from '../navigation/routes'
 
 const DATA = [
   {
@@ -29,9 +32,10 @@ const DATA = [
 
 
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
 
   const { isDark, language } = useSelector(state => state?.appSettings)
+  const user  = useSelector(state => state?.auth.userData)
   const [refreshing, setRefreshing] = useState(false)
   const [posts, setPosts] = useState([])
 
@@ -47,6 +51,24 @@ const HomeScreen = () => {
     }, 1500);
   }
 
+  const onPressLike = async (item,index) => {
+    const user_id = user?._id
+    const post_id = item?._id
+    try {
+      const res = await LocalHost.post('/like/likeDislike', {
+        user_id,
+        post_id
+      })
+
+      const clonePosts = [...posts]
+      clonePosts[index].isLiked = item.isLiked ? false : true
+      clonePosts[index].likeCount = item.isLiked ? clonePosts[index].likeCount + 1 : clonePosts[index].likeCount - 1
+      setPosts(clonePosts)
+      console.log('res', res.data);
+    } catch (error) {
+      console.error('error', error);
+    }
+  }
 
   const fetchPosts = async () => {
     console.log('fetching posts');
@@ -54,7 +76,8 @@ const HomeScreen = () => {
       const response = await LocalHost.get('/post/getPosts', {
         params: {
           page: 1,
-          limit: 50
+          limit: 50,
+          user_id: user?._id
         }
       })
 
@@ -65,8 +88,10 @@ const HomeScreen = () => {
     }
   }
 
-  const renderItem = useCallback(({ item }) => (
-    <View style={styles.box}>
+  const renderItem = useCallback(({ item,index }) => (
+    <Pressable 
+     onPress={()=>navigation.navigate(routes.postDetails,{item})}
+     style={styles.box}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 20, }}>
 
@@ -101,14 +126,18 @@ const HomeScreen = () => {
           >
             <Text style={[styles.likeAndComment, { color: isDark ? colors.white : colors.black }]}>{`Comments: ${item?.commentCount}`}</Text>
             <Text style={[styles.likeAndComment, { color: isDark ? colors.white : colors.black }]}>{`Likes: ${item?.likeCount}`}</Text>
+          <TouchableOpacity onPress={()=>onPressLike(item,index)}>
+      {  item.isLiked && <FontAwesomeIcon color={isDark ? '#98002E' :'#e31b23'} icon={faHeart} size={20} />}
+      {  !item.isLiked && <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faHeartOutline} size={20} />}
+          </TouchableOpacity>
           </View>
           <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faShare} size={20} />
         </View>
       </View>
 
-    </View>
+    </Pressable>
   )
-    , [])
+    , [posts])
 
 
 

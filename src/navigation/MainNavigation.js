@@ -18,6 +18,7 @@ import Links from '../screens/Links';
 import { useSelector } from 'react-redux';
 import colors from '../constants/colors';
 import AddPost from '../screens/AddPost';
+import PostDetails from '../screens/PostDetails';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -90,6 +91,7 @@ const MainStack = () => {
     <Stack.Screen name={routes.editProfile} component={EditProfile} />
     <Stack.Screen name={routes.links} component={Links} />
     <Stack.Screen name={routes.addPost} component={AddPost} />
+    <Stack.Screen name={routes.postDetails} component={PostDetails} />
     </Stack.Navigator>
   );
 };
