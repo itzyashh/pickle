@@ -18,7 +18,7 @@ import Links from '../screens/Links';
 import { useSelector } from 'react-redux';
 import colors from '../constants/colors';
 import AddPost from '../screens/AddPost';
-import PostDetails from '../screens/PostDetails';
+import PostDetails from '../screens/PostDetails/PostDetails';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 

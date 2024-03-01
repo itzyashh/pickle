@@ -13,7 +13,7 @@ const CustomImage = ({source={uri:'https://placehold.co/600x400/png'},type,image
             case 'full':
                 return styles.full
             case 'circleIcon':
-                return styles.circleIcon
+                return {...styles.circleIcon,...imageStyle}
             case 'avatarLarge':
                 return styles.avatarLarge
             default:
