@@ -1,5 +1,5 @@
-import {Button, Dimensions, StyleSheet, Text, Touchable, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import {Button, Dimensions, Pressable, RefreshControl, StyleSheet, Text, Touchable, TouchableOpacity, View} from 'react-native';
+import React, { useEffect } from 'react';
 import WrapperComponent from '../components/WrapperComponent';
 import CustomImage from '../components/CustomImage';
 import {styles} from './styles/ProfileStyle';
@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { routes } from '../navigation/routes';
 import { resetUserData, setUserData } from '../redux/reducers/auth';
+import LocalHost from '../api/LocalHost';
 
 const ProfileScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -19,10 +20,44 @@ const ProfileScreen = ({navigation}) => {
   }
   const {isDark, language} = useSelector(state => state?.appSettings);
   const {width, height} = Dimensions.get('window');
+  const [posts, setPosts] = React.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const userData = useSelector(state => state?.auth?.userData);
+  console.log('userDatsa',userData)
+
+  useEffect(() => {
+    getMyPosts()
+  } ,[])
+
+  const onRefresh = () => {
+      setRefreshing(true);
+      getMyPosts()
+      setTimeout(() => {
+        setRefreshing(false);
+      }, 3000);
+    }
+
 
   const onLogout = () => {
     dispatch(resetUserData())
   };
+
+  const getMyPosts = async () => {
+    try {
+      const response = await LocalHost.get('/post/myPosts',{
+        params:{
+          user_id:userData?._id,
+          page:1,
+          limit:12
+        }
+      })
+      console.log('responseasdas',response.data.result)
+      setPosts(response?.data?.result ?? []);
+    } catch (error) {
+      console.log('error',error)
+    }
+  }
 
   const listHeader = () => {
     return (
@@ -33,21 +68,21 @@ const ProfileScreen = ({navigation}) => {
             alignItems: 'center',
             gap: moderateScale(15),
           }}>
-          <CustomImage type={'avatarLarge'} />
+          <CustomImage type={'avatarLarge'} source={{uri:userData?.profileImage}} />
           <View>
             <Text
               style={[
                 styles.username,
                 {color: isDark ? colors.white : colors.black},
               ]}>
-              John Doe
+              {userData?.fullName}
             </Text>
             <Text
               style={[
                 styles.email,
                 {color: isDark ? colors.gray : colors.black},
               ]}>
-              john@email.com
+              {userData?.email}
             </Text>
           </View>
           <TouchableOpacity onPress={onEdit}>
@@ -71,11 +106,15 @@ const ProfileScreen = ({navigation}) => {
 
   const renderItem = ({item,index}) => {
     return (
-      <TouchableOpacity style={{borderWidth:1,}}>
+      <Pressable
+      onPress={()=>navigation.navigate(routes.postDetails,{item})}
+      style={{borderWidth:1,}}>
 
-      <CustomImage imageStyle={{width:width/3,height:moderateScale(200)}} resizeMode={'cover'}/>
+{!!item?.media && <CustomImage imageStyle={{width:width/3,height:moderateScale(200)}} resizeMode={'cover'}
+        source={{uri:item?.media[0]?.url}} />}
 
-  </TouchableOpacity>
+
+      </Pressable>
     );
   };
 
@@ -84,9 +123,12 @@ const ProfileScreen = ({navigation}) => {
       <View style={{flex: 1, padding: moderateScale(16)}}>
         <FlashList
           ListHeaderComponent={listHeader}
-          data={[{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}]}
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+          data={posts}
           renderItem={renderItem}
-          keyExtractor={item => item.id || String(index)}
+          keyExtractor={(item,index) => item.id || String(index)}
           numColumns={3}
           estimatedItemSize={200}
           showsHorizontalScrollIndicator={false}

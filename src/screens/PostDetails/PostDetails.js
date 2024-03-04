@@ -69,7 +69,7 @@ const PostDetails = ({route}) => {
     const renderItem = ({ item, index }) => {
       const time = formatDistanceToNow(new Date(item.createdAt), { addSuffix: true })
         return (
-            <View style={s.commentContainer}>
+            <View style={[s.commentContainer ,isDark && {backgroundColor:colors.C183D3D}]}>
             <View style={s.avatarContainer}>
             <CustomImage
               imageStyle={{ width: moderateScale(40), height: moderateScale(40) }}
@@ -77,10 +77,11 @@ const PostDetails = ({route}) => {
             </View>
             <View style={s.contentBox}>
             <View style={s.userInfo}>
-              <Text style={s.name}>{item.user_id.fullName}</Text>
-              <Text style={s.time}>{time}</Text>
+              <Text style={[s.name,isDark && {color:colors.white}]}
+              >{item.user_id.fullName}</Text>
+              <Text style={[s.time,isDark && {color:colors.whiteO70}]}>{time}</Text>
               </View>
-              <Text style={s.comment}>{item.comment}</Text>
+              <Text style={[s.comment,isDark && {color:colors.white}]}>{item.comment}</Text>
 
             </View>
 
@@ -129,7 +130,8 @@ const headerComponent = () => {
     const emptyComponent = () => {
         return (
             <View style={{alignItems:'center',justifyContent:'center',marginTop:verticalScale(20)}}>
-            <Text>No Comments</Text>
+            <Text
+            style={{fontSize:moderateScale(20),color:isDark?colors.white:colors.black}}>No Comments</Text>
             </View>
             )
         }
