@@ -19,5 +19,5 @@ const AuthSlice = createSlice({
 
 })
 
-export const {setUserData} = AuthSlice.actions
+export const {setUserData,resetUserData} = AuthSlice.actions
 export default AuthSlice.reducer

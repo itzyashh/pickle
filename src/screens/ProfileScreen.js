@@ -10,7 +10,7 @@ import {FlashList} from '@shopify/flash-list';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { routes } from '../navigation/routes';
-import { setUserData } from '../redux/reducers/auth';
+import { resetUserData, setUserData } from '../redux/reducers/auth';
 
 const ProfileScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const ProfileScreen = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
 
   const onLogout = () => {
-    dispatch(setUserData({}))
+    dispatch(resetUserData())
   };
 
   const listHeader = () => {
