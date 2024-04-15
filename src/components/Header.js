@@ -2,13 +2,15 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { moderateScale } from '../assets/scaling'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faBackward, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faBackward, faCircleChevronLeft, faComment } from '@fortawesome/free-solid-svg-icons'
 import { useNavigation } from '@react-navigation/native'
 import colors from '../constants/colors'
 import { useSelector } from 'react-redux'
 import fontFamily from '../assets/fonts/fontFamily'
 
-const Header = ({onBackPress,leftText,showTitle,title,rightText,onRightPress,backBtnDisabled}) => {
+const Header = ({onBackPress,
+    rightIcon=false,
+    leftText,showTitle,title,rightText,onRightPress,backBtnDisabled}) => {
     const {isDark,language} = useSelector(state => state?.appSettings)
 
     const navigation = useNavigation()
@@ -38,6 +40,12 @@ const Header = ({onBackPress,leftText,showTitle,title,rightText,onRightPress,bac
     </TouchableOpacity>}
     {showTitle && <Text  style={[styles.title,isDark && {color:colors.white}]}>{title}</Text>}
     </View>
+        {rightIcon &&
+        <TouchableOpacity onPress={onRightPress} >
+         <FontAwesomeIcon icon={faComment}
+        style={{marginHorizontal:moderateScale(16)}}
+         size={moderateScale(30)} color={colors.themeLight} />
+         </TouchableOpacity>}
     {rightText && <Text style={{
         fontFamily:fontFamily.medium,
         fontSize:moderateScale(18),
@@ -45,6 +53,7 @@ const Header = ({onBackPress,leftText,showTitle,title,rightText,onRightPress,bac
         color:isDark?colors.white:colors.black,
         marginHorizontal:moderateScale(16)
     }}
+
     onPress={onRightPress}
     >{rightText}</Text>}
     </View>
@@ -55,6 +64,7 @@ const Header = ({onBackPress,leftText,showTitle,title,rightText,onRightPress,bac
         color:isDark?colors.white:colors.black,
         marginHorizontal:moderateScale(16)
     }}>{leftText}</Text>   
+
     
     
 

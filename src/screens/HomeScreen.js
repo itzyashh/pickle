@@ -6,7 +6,7 @@ import { FlashList } from '@shopify/flash-list'
 import { styles } from './styles/homeStyle'
 import CustomImage from '../components/CustomImage'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faEllipsis, faShare } from '@fortawesome/free-solid-svg-icons'
+import { faC, faComment, faEllipsis, faShare } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import colors from '../constants/colors'
 import { moderateScale, verticalScale } from '../assets/scaling'
@@ -14,6 +14,7 @@ import LocalHost from '../api/LocalHost'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
 import { routes } from '../navigation/routes'
+import Header from '../components/Header'
 
 const DATA = [
   {
@@ -70,6 +71,20 @@ const HomeScreen = ({navigation}) => {
     }
   }
 
+  const onPressMessage = async (id) => {
+    try {
+
+      const res = await LocalHost.post('/chat/createPrivateChat',{
+        userId : id,
+      })
+
+      
+      console.log('res', res.data);
+    } catch (error) {
+      
+    }
+  }
+
   const fetchPosts = async () => {
     console.log('fetching posts');
     try {
@@ -97,8 +112,8 @@ const HomeScreen = ({navigation}) => {
 
           <CustomImage type={'avatar'} source={{ uri: 'https://i.pravatar.cc/300' }} />
           <View style={{ gap: moderateScale(5) }}>
-            <Text style={[styles.name, isDark && { color: '#fff' }]}>Maria Ann</Text>
-            <Text style={[styles.location, isDark && { color: colors.whiteO70 }]}>Sector 1, Bucharest</Text>
+            <Text  style={[styles.name, isDark && { color: '#fff' }]}>{item?.user?.fullName}</Text>
+            <Text onPress={()=>onPressMessage(item._id)} style={[styles.location, isDark && { color: colors.whiteO70 }]}>Sector 1, Bucharest</Text>
           </View>
         </View>
         <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faEllipsis} size={20} />
@@ -143,6 +158,10 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <WrapperComponent style={styles.container}>
+    <Header backBtnDisabled
+    rightIcon={faComment}
+    onRightPress={()=>navigation.navigate(routes.chat)}
+     />
       <FlashList
         data={posts}
         refreshControl={

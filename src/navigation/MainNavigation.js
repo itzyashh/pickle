@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux';
 import colors from '../constants/colors';
 import AddPost from '../screens/AddPost';
 import PostDetails from '../screens/PostDetails/PostDetails';
+import ChatScreen from '../screens/ChatScreen/ChatScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -92,6 +93,7 @@ const MainStack = () => {
     <Stack.Screen name={routes.links} component={Links} />
     <Stack.Screen name={routes.addPost} component={AddPost} />
     <Stack.Screen name={routes.postDetails} component={PostDetails} />
+    <Stack.Screen name={routes.chat} component={ChatScreen} />
     </Stack.Navigator>
   );
 };

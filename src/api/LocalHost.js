@@ -32,7 +32,7 @@ const LocalHost = axios.create({
             return response;
         },
         error => {
-            if (error.response.status === 403) {
+            if (error?.response?.status === 403) {
                 console.log('unauthorized, logging out ...')
                 console.log('error', error.response)
                 store.dispatch(resetUserData())

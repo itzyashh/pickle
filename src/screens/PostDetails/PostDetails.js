@@ -1,6 +1,9 @@
 import { View, Text
     , TouchableOpacity,
-    FlatList
+    FlatList,
+    KeyboardAvoidingView,
+    Platform,
+    ActivityIndicator
 
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
@@ -29,8 +32,10 @@ const PostDetails = ({route}) => {
     const { isDark } = useSelector(state => state?.appSettings)
     const user = useSelector(state => state?.auth?.userData)
     const [comments, setComments] = useState([])
+    const [commentsLoading, setCommentsLoading] = useState(false)
     console.log('commentsssss',comments)
     const getPostComments = async () => {
+        setCommentsLoading(true)
         try {
             const res = await LocalHost.get(`/comment/postComments`, {
                 params: {
@@ -43,6 +48,8 @@ const PostDetails = ({route}) => {
             setComments(res.data.result)
         } catch (error) {
             console.log('error', error)
+        } finally {
+            setCommentsLoading(false)
         }
     }
 
@@ -129,6 +136,7 @@ const headerComponent = () => {
 
     const emptyComponent = () => {
         return (
+          commentsLoading ? <ActivityIndicator size="large" color={colors.themeDark} /> :
             <View style={{alignItems:'center',justifyContent:'center',marginTop:verticalScale(20)}}>
             <Text
             style={{fontSize:moderateScale(20),color:isDark?colors.white:colors.black}}>No Comments</Text>
@@ -151,6 +159,10 @@ const headerComponent = () => {
 
   return (
     <WrapperComponent>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? verticalScale(5) : verticalScale(20)}>
         <Header title="Post Details" showTitle={true} />
 
         <FlatList
@@ -177,7 +189,7 @@ const headerComponent = () => {
          <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faLocationArrow} size={50} />
           </TouchableOpacity>
       </View>
-
+      </KeyboardAvoidingView>
     </WrapperComponent>
   )
 }
