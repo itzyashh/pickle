@@ -71,11 +71,11 @@ const HomeScreen = ({navigation}) => {
     }
   }
 
-  const onPressMessage = async (id) => {
+  const onPressMessage = async (item) => {
     try {
 
       const res = await LocalHost.post('/chat/createPrivateChat',{
-        userId : id,
+        userId : item?.user?._id,
       })
 
       
@@ -113,7 +113,7 @@ const HomeScreen = ({navigation}) => {
           <CustomImage type={'avatar'} source={{ uri: 'https://i.pravatar.cc/300' }} />
           <View style={{ gap: moderateScale(5) }}>
             <Text  style={[styles.name, isDark && { color: '#fff' }]}>{item?.user?.fullName}</Text>
-            <Text onPress={()=>onPressMessage(item._id)} style={[styles.location, isDark && { color: colors.whiteO70 }]}>Sector 1, Bucharest</Text>
+            <Text onPress={()=>onPressMessage(item)} style={[styles.location, isDark && { color: colors.whiteO70 }]}>Sector 1, Bucharest</Text>
           </View>
         </View>
         <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faEllipsis} size={20} />
