@@ -13,5 +13,6 @@ export const routes = {
     links: 'Links',
     addPost: 'AddPost',
     postDetails: 'PostDetails',
-    chat: 'Chat',
+    chatList: 'ChatListScreen',
+    chatScreen: 'ChatScreen',
 }

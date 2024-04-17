@@ -160,7 +160,7 @@ const HomeScreen = ({navigation}) => {
     <WrapperComponent style={styles.container}>
     <Header backBtnDisabled
     rightIcon={faComment}
-    onRightPress={()=>navigation.navigate(routes.chat)}
+    onRightPress={()=>navigation.navigate(routes.chatList)}
      />
       <FlashList
         data={posts}
