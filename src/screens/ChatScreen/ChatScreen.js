@@ -7,6 +7,10 @@ import { useSelector } from 'react-redux';
 import { getMessage } from '@reduxjs/toolkit/dist/actionCreatorInvariantMiddleware'
 import LocalHost from '../../api/LocalHost'
 import { showError } from '../../utils/helper'
+import socketService from '../../utils/socketService'
+
+
+const limit = 12
 
 const ChatScreen = ({navigation, route}) => {
     const item = route.params.item
@@ -15,7 +19,7 @@ const ChatScreen = ({navigation, route}) => {
     const user  = useSelector(state => state?.auth.userData)
 
     const [messages, setMessages] = useState([])
-
+    const [page, setPage] = useState(1)
     // _id: 1,
     // text: 'Hello developer',
     // createdAt: new Date(),
@@ -29,10 +33,22 @@ const ChatScreen = ({navigation, route}) => {
       getMessages()
     }, [])
 
+    useEffect(() => {
+      socketService.on('chat message', (msg) => {
+        console.log('catch msg from server', msg)
+      
+      })
+
+      return () => {
+        socketService.removeListener('chat message')
+      }
+    }, [])
+  
+
     const getMessages = async () => {
-      const res = await LocalHost.get(`/message/myMessages?chatId=${item?._id}`)
+      const res = await LocalHost.get(`/message/myMessages?chatId=${item?._id}&page=${page}&limit=${limit}`)
       console.log('res getmessages', res.data)
-      setMessages(res.data.data.reverse())
+      setMessages(res.data.data)
     }
 
 
@@ -46,6 +62,9 @@ const ChatScreen = ({navigation, route}) => {
           chatId: item?._id,
           text: messages[0].text
         }).catch((err) => {showError('Error sending message')})
+
+        socketService.emit('chat message',messages[0].text)
+
         console.log('res sendMessages', res.data)
       }, [])
 

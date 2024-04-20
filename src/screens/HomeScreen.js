@@ -15,6 +15,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
 import { routes } from '../navigation/routes'
 import Header from '../components/Header'
+import socketService from '../utils/socketService'
 
 const DATA = [
   {
@@ -42,6 +43,7 @@ const HomeScreen = ({navigation}) => {
 
   useEffect(() => {
     fetchPosts()
+    socketService.initiliazeSocket()
   }, [])
 
   const onRefresh = async () => {
