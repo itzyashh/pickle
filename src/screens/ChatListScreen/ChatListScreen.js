@@ -18,6 +18,10 @@ const ChatListScreen = ({navigation}) => {
 
     const [chatList, setChatList] = useState([])
     const {isDark,language} = useSelector(state => state?.appSettings)
+    const user  = useSelector(state => state?.auth.userData)
+
+
+  
 
     useEffect(() => {
         getChatList()
@@ -27,7 +31,7 @@ const ChatListScreen = ({navigation}) => {
     const onChatPress = (item) => {
         console.log('item', item)
         navigation.navigate(routes.chatScreen,{
-          name: item?.type === 'group' ? item.chatName : item.users[1].userName,
+          name: item?.type === 'group' ? item.chatName : item.users[1].userName === user.userName ? item.users[0].userName : item.users[1].userName,
           item
         })
     }
@@ -72,7 +76,7 @@ const ChatListScreen = ({navigation}) => {
             <CustomImage  type={'circleIcon'} />
             <View>
             <View style={{flexDirection:'row',alignItems:'center'}}>
-              <Text style={styles.username}>{item.users[1].userName}</Text>
+              <Text style={styles.username}>{item.users[1].userName === user.userName ? item.users[0].userName : item.users[1].userName}</Text>
               <Text style={[styles.activity,{color:isDark?colors.white:colors.black}]}>{' '}{item.lastMessage}</Text>
             </View>
               <Text style={[styles.time,{color:isDark?colors.grayO70:colors.gray}]}>{formatDistanceToNow(new Date(item.updatedAt),{addSuffix:true})}</Text>

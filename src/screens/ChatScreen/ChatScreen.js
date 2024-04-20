@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import WrapperComponent from '../../components/WrapperComponent'
 import Header from '../../components/Header'
@@ -34,9 +34,19 @@ const ChatScreen = ({navigation, route}) => {
     }, [])
 
     useEffect(() => {
-      socketService.on('chat message', (msg) => {
-        console.log('catch msg from server', msg)
-      
+
+      socketService.emit('join room', item?._id)
+
+      socketService.on('chat message', (data) => {
+        console.log('catch data from server', data)
+        // Alert.alert('New message', data.text)
+        // return
+
+        if (data.user._id === user?._id) return
+
+        setMessages(previousMessages =>
+          GiftedChat.append(previousMessages, data),
+        )
       })
 
       return () => {
@@ -63,7 +73,14 @@ const ChatScreen = ({navigation, route}) => {
           text: messages[0].text
         }).catch((err) => {showError('Error sending message')})
 
-        socketService.emit('chat message',messages[0].text)
+        socketService.emit('chat message',{
+          ...res.data.data,
+          user: {
+            _id: user?._id,
+            name: user?.userName,
+            // avatar: user?.avatar
+          }
+        })
 
         console.log('res sendMessages', res.data)
       }, [])
