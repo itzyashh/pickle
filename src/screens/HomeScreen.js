@@ -99,7 +99,7 @@ const HomeScreen = ({navigation}) => {
       })
 
       console.log('response all posts', response.data);
-      setPosts(response?.data?.result)
+      setPosts(response?.data?.result.reverse())
     } catch (error) {
       console.log('error', error);
     }

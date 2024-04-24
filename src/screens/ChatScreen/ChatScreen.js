@@ -33,6 +33,11 @@ const ChatScreen = ({navigation, route}) => {
       getMessages()
     }, [])
 
+    const leaveRoom = () => {
+      socketService.emit('leave room', item?._id)
+      navigation.goBack()
+    }
+
     useEffect(() => {
 
       socketService.emit('join room', item?._id)
@@ -51,6 +56,7 @@ const ChatScreen = ({navigation, route}) => {
 
       return () => {
         socketService.removeListener('chat message')
+        socketService.emit('leave room', item?._id)
       }
     }, [])
   
@@ -87,7 +93,9 @@ const ChatScreen = ({navigation, route}) => {
 
   return (
     <WrapperComponent>
-    <Header showTitle title={receiverName} />
+    <Header 
+    onBackPress={leaveRoom}
+    showTitle title={receiverName} />
     <GiftedChat
       messages={messages}
       onSend={messages => onSend(messages)}

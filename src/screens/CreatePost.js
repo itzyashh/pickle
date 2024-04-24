@@ -78,6 +78,7 @@ const CreatePost = ({navigation}) => {
     CameraRoll.getPhotos({
       first: 20,
       assetType: 'Photos',
+      mimeTypes: ['image/jpeg', 'image/png', 'image/jpg', ],
     })
       .then(r => {
         console.log('r', r);
