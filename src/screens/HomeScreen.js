@@ -73,19 +73,7 @@ const HomeScreen = ({navigation}) => {
     }
   }
 
-  const onPressMessage = async (item) => {
-    try {
 
-      const res = await LocalHost.post('/chat/createPrivateChat',{
-        userId : item?.user?._id,
-      })
-
-      
-      console.log('res', res.data);
-    } catch (error) {
-      
-    }
-  }
 
   const fetchPosts = async () => {
     console.log('fetching posts');
@@ -110,14 +98,15 @@ const HomeScreen = ({navigation}) => {
      onPress={()=>navigation.navigate(routes.postDetails,{item})}
      style={styles.box}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 20, }}>
-
+        <Pressable onPress={()=>{
+          navigation.navigate(routes.externalProfile,{user:item?.user})
+        }} style={{ flexDirection: 'row', alignItems: 'center', gap: 20 }}>
           <CustomImage type={'avatar'} source={{ uri: 'https://i.pravatar.cc/300' }} />
           <View style={{ gap: moderateScale(5) }}>
             <Text  style={[styles.name, isDark && { color: '#fff' }]}>{item?.user?.fullName}</Text>
-            <Text onPress={()=>onPressMessage(item)} style={[styles.location, isDark && { color: colors.whiteO70 }]}>Sector 1, Bucharest</Text>
+            <Text  style={[styles.location, isDark && { color: colors.whiteO70 }]}>Sector 1, Bucharest</Text>
           </View>
-        </View>
+        </Pressable>
         <FontAwesomeIcon color={isDark ? colors.white : colors.black} icon={faEllipsis} size={20} />
       </View>
       <View style={styles.postImage}>

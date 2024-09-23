@@ -15,4 +15,5 @@ export const routes = {
     postDetails: 'PostDetails',
     chatList: 'ChatListScreen',
     chatScreen: 'ChatScreen',
+    externalProfile: 'ExternalProfile',
 }

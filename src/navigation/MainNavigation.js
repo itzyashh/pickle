@@ -96,6 +96,8 @@ const MainStack = () => {
     <Stack.Screen name={routes.postDetails} component={PostDetails} />
     <Stack.Screen name={routes.chatList} component={ChatListScreen} />
     <Stack.Screen name={routes.chatScreen} component={ChatScreen} />
+    <Stack.Screen name={routes.externalProfile} component={ProfileScreen} />
+
     </Stack.Navigator>
   );
 };

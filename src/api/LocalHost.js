@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../redux/store";
 import { resetUserData } from "../redux/reducers/auth";
 
-export const baseURL = "http://192.168.1.11:3000";
+export const baseURL = "http://localhost:3000";
 
 const token =  store.getState()?.auth?.userData?.token
 console.log('token', token);

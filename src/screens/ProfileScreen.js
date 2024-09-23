@@ -12,6 +12,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { routes } from '../navigation/routes';
 import { resetUserData, setUserData } from '../redux/reducers/auth';
 import LocalHost from '../api/LocalHost';
+import { useRoute } from '@react-navigation/native';
 
 const ProfileScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -22,9 +23,13 @@ const ProfileScreen = ({navigation}) => {
   const {width, height} = Dimensions.get('window');
   const [posts, setPosts] = React.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   const [refreshing, setRefreshing] = React.useState(false);
-
+  const route = useRoute();
+  const otherUser = route.params?.user
   const userData = useSelector(state => state?.auth?.userData);
   console.log('userDatsa',userData)
+
+
+
 
   useEffect(() => {
     getMyPosts()
@@ -38,7 +43,25 @@ const ProfileScreen = ({navigation}) => {
       }, 3000);
     }
 
+    const onPressMessage = async (item) => {
 
+      if(!otherUser){
+        return
+      }
+
+
+      try {
+  
+        const res = await LocalHost.post('/chat/createPrivateChat',{
+          userId : otherUser?._id,
+        })
+  
+        
+        console.log('res', res.data);
+      } catch (error) {
+        
+      }
+    }
   const onLogout = () => {
     dispatch(resetUserData())
   };
@@ -47,7 +70,7 @@ const ProfileScreen = ({navigation}) => {
     try {
       const response = await LocalHost.get('/post/myPosts',{
         params:{
-          user_id:userData?._id,
+          user_id: otherUser?._id || userData?._id,
           page:1,
           limit:12
         }
@@ -75,20 +98,20 @@ const ProfileScreen = ({navigation}) => {
                 styles.username,
                 {color: isDark ? colors.white : colors.black},
               ]}>
-              {userData?.fullName}
+              { otherUser?.fullName || userData?.fullName}
             </Text>
             <Text
               style={[
                 styles.email,
                 {color: isDark ? colors.gray : colors.black},
               ]}>
-              {userData?.email}
+              { otherUser?.email || userData?.email}
             </Text>
           </View>
           <TouchableOpacity onPress={onEdit}>
           <FontAwesomeIcon icon={faPenToSquare} size={moderateScale(20)} color={isDark?colors.white:colors.black} />
           </TouchableOpacity>
-          <Button title={'Logout'} onPress={onLogout} />
+      { !otherUser  ?    <Button title={'Logout'} onPress={onLogout} /> : <Button title={'Message'} onPress={onPressMessage} />}
         </View>
         <Text
           style={[styles.bio, {color: isDark ? colors.white : colors.black}]}>
