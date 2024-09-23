@@ -13,10 +13,11 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 </div>
 
 <!-- Displaying the video with a 4:3 aspect ratio below the images -->
-<video width="640" height="480" controls style="display: block; margin: 20px auto;">
-  <source src="https://github.com/user-attachments/assets/b685af99-7e9b-41de-b482-a631a6235bf4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>   
+
+
+https://github.com/user-attachments/assets/44b642b6-c4e4-42cb-aaf6-0a80a3378481
+
+
 
 
 
