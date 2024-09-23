@@ -1,5 +1,27 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+
+
+# Overview
+
+
+<!-- Displaying the images in a single row -->
+<div style="display: flex; justify-content: space-between; gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/7dfdad31-e010-4ae2-815b-192ef62f9540" alt="Screenshot 1" width="32%" />
+  <img src="https://github.com/user-attachments/assets/801a105f-fd0c-4e21-8c75-64b74fb97f1f" alt="Screenshot 2" width="32%" />
+  <img src="https://github.com/user-attachments/assets/f38cd92c-47ad-40ca-b992-98a98c5d293e" alt="Screenshot 3" width="32%" />
+</div>
+
+<!-- Displaying the video with a 4:3 aspect ratio below the images -->
+<video width="640" height="480" controls style="display: block; margin: 20px auto;">
+  <source src="https://github.com/user-attachments/assets/b685af99-7e9b-41de-b482-a631a6235bf4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>   
+
+
+
+
+
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
